@@ -1,9 +1,9 @@
 {
-    "name": "UrlaubsRechner",
-    "short_name": "Url.Rchnr",
-    "description": "Wieviel Urlaubstage? Und was bekomme ich ausbezahlt?",
+    "name": "PlateCalculator",
+    "short_name": "Pl.Calc",
+    "description": "How many plates for a BIG pump?",
     "start_url": "./index.html",
-    "id": "id-UrlaubsRechner",
+    "id": "id-PlateCalculator",
     "display": "fullscreen",
     "background_color": "#ffffff",
     "theme_color": "#000000",
