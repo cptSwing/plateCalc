@@ -32,11 +32,9 @@ const PerWeightImplement = ({
             case "DumbBell":
                 markup = markupWrap(implementData, w);
                 break;
-            // eg "Dumbbells"
+            // eg "Dumbbells":
             default:
                 markup = markupWrap({ ...implementData, implementSides: 4 }, w, true);
-
-                // markup = markupWrap({ ...implementData, val: implementData.val * 2 }, true);
                 break;
         }
 
@@ -48,51 +46,102 @@ const PerWeightImplement = ({
 
 export default PerWeightImplement;
 
+export const getSetLimits = (multipleDb: boolean) => ({
+    "15": quarterIfMultiple(2, multipleDb),
+    "10": quarterIfMultiple(6, multipleDb),
+    "5": quarterIfMultiple(8, multipleDb),
+    "2.5": quarterIfMultiple(8, multipleDb),
+    "2": quarterIfMultiple(4, multipleDb),
+    "1.25": quarterIfMultiple(6, multipleDb),
+    "0.5": quarterIfMultiple(8, multipleDb),
+});
+
 function markupWrap(data: ImplementType, target: number, multipleDb = false) {
-    const setLimits = {
-        "15": quarterIfMultiple(2, multipleDb),
-        "10": quarterIfMultiple(6, multipleDb),
-        "5": quarterIfMultiple(8, multipleDb),
-        "2.5": quarterIfMultiple(8, multipleDb),
-        "2": quarterIfMultiple(4, multipleDb),
-        "1.25": quarterIfMultiple(6, multipleDb),
-        "0.5": quarterIfMultiple(8, multipleDb),
-    };
-    const safeSet = Object.entries(setLimits).map((property) => {
-        const [string] = property;
-        return parseFloat(string);
-    });
+    const setLimits = getSetLimits(multipleDb);
+    const safeSet = Object.entries(setLimits).map(([string]) => parseFloat(string));
 
     const targetWeightWithSides = multipleDb ? data.implementWeight * 2 : data.implementWeight;
     const targetWeightCorrected = (target - targetWeightWithSides) / data.implementSides;
     const closest = countWeightPlates(targetWeightCorrected, safeSet, setLimits);
 
     return (
-        <div className="w-full flex-row justify-between">
-            <div className="mx-2 inline">
-                {`${data.implementSides / 2} ${data.implementWeight}kg ${data.implementType}`}:{" "}
-                {returnTargetWeight(target, data.implementWeight, multipleDb)}kg/side
+        <>
+            {/* Count */}
+            <div className="w-full border-b pl-1 text-center italic">{data.implementSides / 2}</div>
+
+            {/* Gear */}
+            <div className="col-span-2 flex  w-full items-center justify-between border-b border-l px-1">
+                <div>{data.implementType}</div>
+                <div className="mr-0 whitespace-nowrap text-xs">({data.implementWeight} kg)</div>
             </div>
 
-            <div className="mx-2 my-1 inline-flex flex-row items-center justify-start">
-                {Object.entries(closest.plates).map(([plate, count], idx, arr) => {
-                    return (
-                        <div key={plate + "" + count + "" + idx} className="inline px-1">
-                            {count}x {plate}
-                            {idx === arr.length - 1 ? "" : ";"}
-                        </div>
-                    );
-                })}
+            {/* Add per side */}
+            <div className="col-span-2 w-full border-b border-l pl-1 text-center">
+                {returnTargetWeight(target, data.implementWeight, multipleDb)}
             </div>
 
-            <div className="m-2 inline">
-                closestWeight:{" "}
+            {/* Plates to Add */}
+            <div className="col-span-4 w-full border-b border-l">
+                <ReturnSorted plates={closest.plates} />
+            </div>
+
+            {/* Closest */}
+            <div className="col-span-2 w-full border-b border-l pl-1 text-center">
                 {(multipleDb ? closest.achievedWeight * 2 : closest.achievedWeight) * 2 +
-                    (multipleDb ? data.implementWeight * 2 : data.implementWeight)}
+                    (multipleDb ? data.implementWeight * 2 : data.implementWeight)}{" "}
+                kg
             </div>
-        </div>
+        </>
     );
 }
+
+const ReturnSorted = ({ plates }: { plates: PlateCountType }) => {
+    const returnMarkup = [];
+
+    returnMarkup.push(
+        <div className="w-full bg-gray-100 text-center" key={"0.5"}>
+            {plates["0.5"] ? <span className="font-bold text-green-600">{plates["0.5"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    returnMarkup.push(
+        <div className="mx-auto" key={"1.25"}>
+            {plates["1.25"] ? <span className="font-bold text-green-600">{plates["1.25"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    returnMarkup.push(
+        <div className="w-full bg-gray-100 text-center" key={"2"}>
+            {plates["2"] ? <span className="font-bold text-green-600">{plates["2"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    returnMarkup.push(
+        <div className="mx-auto" key={"2.5"}>
+            {plates["2.5"] ? <span className="font-bold text-green-600">{plates["2.5"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    returnMarkup.push(
+        <div className="w-full bg-gray-100 text-center" key={"5"}>
+            {plates["5"] ? <span className="font-bold text-green-600">{plates["5"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    returnMarkup.push(
+        <div className="mx-auto" key={"10"}>
+            {plates["10"] ? <span className="font-bold text-green-600">{plates["10"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    returnMarkup.push(
+        <div className="w-full bg-gray-100 text-center" key={"15"}>
+            {plates["15"] ? <span className="font-bold text-green-600">{plates["15"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    return <div className="grid w-full grid-cols-7">{returnMarkup.map((elem) => elem)}</div>;
+};
 
 type WeightPlatesType = number[];
 type PlateCountType = { [key: number]: number };
@@ -100,14 +149,14 @@ type UsedPlatesType = PlateCountType;
 
 function countWeightPlates(targetWeight: number, weightPlates: WeightPlatesType, plateCounts: PlateCountType) {
     // Sort the weight plates array in descending order
-    weightPlates.sort((a, b) => b - a);
+    const weightPlatesSorted = [...weightPlates].sort((a, b) => b - a);
 
     function findCombination(remainingWeight: number, index: number, usedPlates: UsedPlatesType, achievedWeight: number) {
-        if (remainingWeight === 0 || index >= weightPlates.length) {
+        if (remainingWeight === 0 || index >= weightPlatesSorted.length) {
             return { achievedWeight, plates: usedPlates };
         }
 
-        const plateWeight = weightPlates[index];
+        const plateWeight = weightPlatesSorted[index];
         const plateCount = Math.min(plateCounts[plateWeight] || 0, Math.floor(remainingWeight / plateWeight));
 
         let bestResult = { achievedWeight, plates: usedPlates };
@@ -131,7 +180,6 @@ function countWeightPlates(targetWeight: number, weightPlates: WeightPlatesType,
     }
 
     const bestCombination = findCombination(targetWeight, 0, {}, 0);
-    bestCombination.plates = Object.fromEntries(Object.entries(bestCombination.plates).filter(([plate, count]) => count > 0));
     return bestCombination;
 }
 
@@ -165,6 +213,16 @@ export enum ImplementEnum {
     "EzBar" = 7.5,
     "DumbBell" = 2,
     "DumbBells" = 2.5,
+}
+
+export enum PlateCountEnum {
+    "_15" = 2,
+    "_10" = 6,
+    "_5" = 8,
+    "_2.5" = 8,
+    "_2" = 4,
+    "_1.25" = 6,
+    "_0.5" = 8,
 }
 
 type ImplementType = {

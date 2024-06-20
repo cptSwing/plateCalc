@@ -1,91 +1,56 @@
-import { useEffect, useRef, useState } from "react";
-// import plateCalculator from "plate-calculator";
-import { isNumber } from "./WeightSplit";
+import { PlateCountEnum } from "./PerWeightImplement";
 
-const WhichPlates = ({
-    targetWeightState,
-}: {
-    targetWeightState: [number | null, React.Dispatch<React.SetStateAction<number | null>>];
-}) => {
-    const [targetWeight] = targetWeightState;
-    const intermediaryPlateState = useState([{ plateWeight: 0, qty: 0 }]);
-    const [intermediaryPlate, setIntermediaryPlate] = intermediaryPlateState;
-    const intermediaryRef = useRef(targetWeight ? targetWeight : 0);
-
-    useEffect(() => {
-        if (isNumber(targetWeight)) {
-        }
-    }, [targetWeight]);
-
+const WhichPlates = () => {
     return (
-        <div>
-            {intermediaryPlate.map((plateData) => {
-                return (
-                    <div key={plateData.plateWeight + plateData.qty} className="flex h-full w-full flex-row justify-between">
-                        <div className="inline">{`${plateData.plateWeight} Kg`}</div>
-                        <div className="inline">
-                            {plateData.qty}
-                            {/* <input
-                                        className="bg-red-700 "
-                                        type="number"
-                                        min={0}
-                                        step={2}
-                                        onInput={(e) =>
-                                            console.log("%c[WhichPlates]", "color: #879c23", `e.target.value :`, e.target.value)
-                                        }
-                                    /> */}
-                        </div>
-                        {/* <div className="inline">{intermediaryRef.current}</div> */}
+        <div className="flex flex-col items-center justify-start rounded-md border-2 border-gray-300 shadow-md">
+            <div className="col-span-7 h-fit w-full border-b-2 border-gray-300 bg-gray-200 p-1 text-center text-sm">Available Plates</div>
+
+            <div className="grid grid-cols-7 gap-x-4 p-2">
+                <div className="flex flex-col items-center justify-center">
+                    <div className="flex aspect-square items-center justify-center whitespace-nowrap rounded-full border border-gray-500 bg-gray-300 py-1 text-xs text-gray-700">
+                        15
                     </div>
-                );
-            })}
+                    <div className="text-sm font-bold">{PlateCountEnum["_15"]}x</div>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                    <div className="flex aspect-square items-center justify-center whitespace-nowrap rounded-full border border-gray-500 bg-gray-300 py-1 text-xs text-gray-700">
+                        10
+                    </div>
+                    <div className="text-sm font-bold">{PlateCountEnum["_10"]}x</div>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                    <div className="flex aspect-square items-center justify-center whitespace-nowrap rounded-full border border-gray-500 bg-gray-300 py-1 text-xs text-gray-700">
+                        5
+                    </div>
+                    <div className="text-sm font-bold">{PlateCountEnum["_5"]}x</div>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                    <div className="flex aspect-square items-center justify-center whitespace-nowrap rounded-full border border-gray-500 bg-gray-300 py-1 text-xs text-gray-700">
+                        2.5
+                    </div>
+                    <div className="text-sm font-bold">{PlateCountEnum["_2.5"]}x</div>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                    <div className="flex aspect-square items-center justify-center whitespace-nowrap rounded-full border border-gray-500 bg-gray-300 py-1 text-xs text-gray-700">
+                        2
+                    </div>
+                    <div className="text-sm font-bold">{PlateCountEnum["_2"]}x</div>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                    <div className="flex aspect-square items-center justify-center whitespace-nowrap rounded-full border border-gray-500 bg-gray-300 py-1 text-xs text-gray-700">
+                        1.25
+                    </div>
+                    <div className="text-sm font-bold">{PlateCountEnum["_1.25"]}x</div>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                    <div className="flex aspect-square items-center justify-center whitespace-nowrap rounded-full border border-gray-500 bg-gray-300 py-1 text-xs text-gray-700">
+                        0.5
+                    </div>
+                    <div className="text-sm font-bold">{PlateCountEnum["_0.5"]}x</div>
+                </div>
+            </div>
         </div>
     );
 };
 
 export default WhichPlates;
-
-const getPlateCount = (currentWeight: number, count: number, plateWeight: number) => {
-    const platesOfTypeSum = plateWeight * count;
-    const remaining = currentWeight - platesOfTypeSum;
-
-    return remaining;
-};
-
-const plateDatas = [
-    {
-        weight: 15,
-        string: "Plate",
-        count: 2,
-    },
-    {
-        weight: 10,
-        string: "Plate",
-        count: 4,
-    },
-    {
-        weight: 5,
-        string: "Plate",
-        count: 8,
-    },
-    {
-        weight: 2.5,
-        string: "Plate",
-        count: 8,
-    },
-    {
-        weight: 2,
-        string: "Plate",
-        count: 4,
-    },
-    {
-        weight: 1.25,
-        string: "Plate",
-        count: 6,
-    },
-    {
-        weight: 0.5,
-        string: "Plate",
-        count: 8,
-    },
-];

@@ -24,19 +24,16 @@ const WeightSplit = ({
     }, [targetWeight]);
 
     return (
-        <div className="h-full w-full flex-col bg-red-300 p-4">
-            <div className="flex justify-between">
-                <div>50%:</div>
-                <div>{roundedNumbersMemo.half}</div>
-            </div>
-            <div className="flex justify-between">
-                <div>75%:</div>
-                <div>{roundedNumbersMemo.threeQuarters}</div>
-            </div>
-            <div className="flex justify-between">
-                <div>100%:</div>
-                <div>{roundedNumbersMemo.full}</div>
-            </div>
+        <div className="grid w-56 grid-cols-2 rounded-md border-2 border-gray-300 text-sm shadow-md">
+            <div className="border-b-2 border-gray-300 bg-gray-200 p-1 text-center">Percentage</div>
+            <div className=" border-b-2 border-l border-gray-300 bg-gray-200 p-1 text-center">Weight</div>
+
+            <div className="border-b text-center">50%</div>
+            <div className="border-b  border-l text-center">{roundedNumbersMemo.half}</div>
+            <div className="border-b text-center">75%</div>
+            <div className="border-b  border-l text-center">{roundedNumbersMemo.threeQuarters}</div>
+            <div className="border-b text-center">100%</div>
+            <div className="border-b  border-l text-center">{roundedNumbersMemo.full}</div>
         </div>
     );
 };

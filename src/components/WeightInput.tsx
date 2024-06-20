@@ -10,19 +10,19 @@ const WeightInput = ({
     const [weightTempVal, setWeightTempVal] = useState(isNumber(targetWeight) ? (targetWeight as number) : 0);
 
     return (
-        <div className="h-full w-full bg-yellow-300 p-4">
-            <form onSubmit={(e) => e.preventDefault()}>
-                <label className="block" htmlFor="weightValue">
-                    Target Weight:
-                </label>
+        <div className="h-fit rounded-md border-2 border-gray-300 text-sm shadow-md">
+            <label className="block border-b-2 border-gray-300 bg-gray-200 px-4 py-1" htmlFor="weightValue">
+                Target Weight
+            </label>
+            <form className="flex items-center justify-between p-1" onSubmit={(e) => e.preventDefault()}>
                 <input
-                    className="block"
+                    className="h-full w-9 rounded-sm py-1 text-center ring-[1px] ring-gray-500"
                     type="text"
                     id="weightValue"
                     name="weightValue"
                     defaultValue={weightTempVal}
                     onInput={(e) => {
-                        // @ts-expect-error yes it is
+                        // @ts-expect-error yes it does
                         setWeightTempVal(parseFloat(e.target.value));
                     }}
                     onKeyUp={(e) => {
@@ -30,14 +30,9 @@ const WeightInput = ({
                             setTargetWeight(weightTempVal);
                         }
                     }}
-                    // value={weightTempVal}
-                    // inputMode="decimal"
-                    // pattern="[0-9]+([\.,][0-9]+)?"
-                    // step={"0.5"}
-                    // min="0"
                 />
                 <button
-                    className="bg-green-600"
+                    className="rounded-md border border-gray-500 bg-gray-300 p-1 text-gray-700 ring-gray-500/30 active:border-blue-700 active:text-white active:ring"
                     type="button"
                     onClick={() => {
                         setTargetWeight(weightTempVal);
