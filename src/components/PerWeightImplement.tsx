@@ -99,32 +99,8 @@ const ReturnSorted = ({ plates }: { plates: PlateCountType }) => {
     const returnMarkup = [];
 
     returnMarkup.push(
-        <div className="w-full bg-gray-100 text-center" key={"0.5"}>
-            {plates["0.5"] ? <span className="font-bold text-green-600">{plates["0.5"]}</span> : <span className="text-gray-300">0</span>}
-        </div>,
-    );
-
-    returnMarkup.push(
-        <div className="mx-auto" key={"1.25"}>
-            {plates["1.25"] ? <span className="font-bold text-green-600">{plates["1.25"]}</span> : <span className="text-gray-300">0</span>}
-        </div>,
-    );
-
-    returnMarkup.push(
-        <div className="w-full bg-gray-100 text-center" key={"2"}>
-            {plates["2"] ? <span className="font-bold text-green-600">{plates["2"]}</span> : <span className="text-gray-300">0</span>}
-        </div>,
-    );
-
-    returnMarkup.push(
-        <div className="mx-auto" key={"2.5"}>
-            {plates["2.5"] ? <span className="font-bold text-green-600">{plates["2.5"]}</span> : <span className="text-gray-300">0</span>}
-        </div>,
-    );
-
-    returnMarkup.push(
-        <div className="w-full bg-gray-100 text-center" key={"5"}>
-            {plates["5"] ? <span className="font-bold text-green-600">{plates["5"]}</span> : <span className="text-gray-300">0</span>}
+        <div className="w-full bg-gray-100 text-center" key={"15"}>
+            {plates["15"] ? <span className="font-bold text-green-600">{plates["15"]}</span> : <span className="text-gray-300">0</span>}
         </div>,
     );
 
@@ -135,8 +111,32 @@ const ReturnSorted = ({ plates }: { plates: PlateCountType }) => {
     );
 
     returnMarkup.push(
-        <div className="w-full bg-gray-100 text-center" key={"15"}>
-            {plates["15"] ? <span className="font-bold text-green-600">{plates["15"]}</span> : <span className="text-gray-300">0</span>}
+        <div className="w-full bg-gray-100 text-center" key={"5"}>
+            {plates["5"] ? <span className="font-bold text-green-600">{plates["5"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    returnMarkup.push(
+        <div className="mx-auto" key={"2.5"}>
+            {plates["2.5"] ? <span className="font-bold text-green-600">{plates["2.5"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    returnMarkup.push(
+        <div className="w-full bg-gray-100 text-center" key={"2"}>
+            {plates["2"] ? <span className="font-bold text-green-600">{plates["2"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    returnMarkup.push(
+        <div className="mx-auto" key={"1.25"}>
+            {plates["1.25"] ? <span className="font-bold text-green-600">{plates["1.25"]}</span> : <span className="text-gray-300">0</span>}
+        </div>,
+    );
+
+    returnMarkup.push(
+        <div className="w-full bg-gray-100 text-center" key={"0.5"}>
+            {plates["0.5"] ? <span className="font-bold text-green-600">{plates["0.5"]}</span> : <span className="text-gray-300">0</span>}
         </div>,
     );
 
