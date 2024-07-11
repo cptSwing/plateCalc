@@ -67,26 +67,28 @@ function markupWrap(data: ImplementType, target: number, multipleDb = false) {
     return (
         <>
             {/* Count */}
-            <div className="w-full border-b pl-1 text-center italic">{data.implementSides / 2}</div>
+            <div className="w-full border-b  border-b-white bg-gray-400 pl-1 text-center italic text-gray-100">
+                {data.implementSides / 2}
+            </div>
 
             {/* Gear */}
-            <div className="col-span-2 flex  w-full items-center justify-between border-b border-l px-1">
+            <div className="col-span-2  flex w-full items-center justify-between border-b border-l  border-x-gray-300 border-y-white bg-gray-400 px-1 text-gray-100">
                 <div>{data.implementType}</div>
                 <div className="mr-0 whitespace-nowrap text-xs">({data.implementWeight} kg)</div>
             </div>
 
             {/* Add per side */}
-            <div className="col-span-2 w-full border-b border-l pl-1 text-center">
+            <div className="col-span-2 w-full border-b border-l  border-x-gray-300 border-y-white bg-gray-400 pl-1 text-center text-gray-100">
                 {returnTargetWeight(target, data.implementWeight, multipleDb)}
             </div>
 
             {/* Plates to Add */}
-            <div className="col-span-4 w-full border-b border-l">
+            <div className="col-span-4 w-full border-b border-l  border-x-gray-300 border-y-white bg-gray-400">
                 <ReturnSorted plates={closest.plates} />
             </div>
 
             {/* Closest */}
-            <div className="col-span-2 w-full border-b border-l pl-1 text-center">
+            <div className="col-span-2 w-full border-b border-l  border-x-gray-300 border-y-white bg-gray-400 pl-1 text-center text-gray-100">
                 {(multipleDb ? closest.achievedWeight * 2 : closest.achievedWeight) * 2 +
                     (multipleDb ? data.implementWeight * 2 : data.implementWeight)}{" "}
                 kg
@@ -100,43 +102,43 @@ const ReturnSorted = ({ plates }: { plates: PlateCountType }) => {
 
     returnMarkup.push(
         <div className="w-full bg-gray-100 text-center" key={"15"}>
-            {plates["15"] ? <span className="font-bold text-green-600">{plates["15"]}</span> : <span className="text-gray-300">0</span>}
+            {plates["15"] ? <span className="font-bold text-green-600">{plates["15"]}</span> : <span className="text-gray-400">0</span>}
         </div>,
     );
 
     returnMarkup.push(
-        <div className="mx-auto" key={"10"}>
-            {plates["10"] ? <span className="font-bold text-green-600">{plates["10"]}</span> : <span className="text-gray-300">0</span>}
+        <div className="mx-auto w-full bg-gray-300 text-center" key={"10"}>
+            {plates["10"] ? <span className="font-bold text-green-600">{plates["10"]}</span> : <span className="text-gray-100">0</span>}
         </div>,
     );
 
     returnMarkup.push(
         <div className="w-full bg-gray-100 text-center" key={"5"}>
-            {plates["5"] ? <span className="font-bold text-green-600">{plates["5"]}</span> : <span className="text-gray-300">0</span>}
+            {plates["5"] ? <span className="font-bold text-green-600">{plates["5"]}</span> : <span className="text-gray-400">0</span>}
         </div>,
     );
 
     returnMarkup.push(
-        <div className="mx-auto" key={"2.5"}>
-            {plates["2.5"] ? <span className="font-bold text-green-600">{plates["2.5"]}</span> : <span className="text-gray-300">0</span>}
+        <div className="mx-auto w-full bg-gray-300 text-center" key={"2.5"}>
+            {plates["2.5"] ? <span className="font-bold text-green-600">{plates["2.5"]}</span> : <span className="text-gray-100">0</span>}
         </div>,
     );
 
     returnMarkup.push(
         <div className="w-full bg-gray-100 text-center" key={"2"}>
-            {plates["2"] ? <span className="font-bold text-green-600">{plates["2"]}</span> : <span className="text-gray-300">0</span>}
+            {plates["2"] ? <span className="font-bold text-green-600">{plates["2"]}</span> : <span className="text-gray-400">0</span>}
         </div>,
     );
 
     returnMarkup.push(
-        <div className="mx-auto" key={"1.25"}>
-            {plates["1.25"] ? <span className="font-bold text-green-600">{plates["1.25"]}</span> : <span className="text-gray-300">0</span>}
+        <div className="mx-auto w-full bg-gray-300 text-center" key={"1.25"}>
+            {plates["1.25"] ? <span className="font-bold text-green-600">{plates["1.25"]}</span> : <span className="text-gray-100">0</span>}
         </div>,
     );
 
     returnMarkup.push(
         <div className="w-full bg-gray-100 text-center" key={"0.5"}>
-            {plates["0.5"] ? <span className="font-bold text-green-600">{plates["0.5"]}</span> : <span className="text-gray-300">0</span>}
+            {plates["0.5"] ? <span className="font-bold text-green-600">{plates["0.5"]}</span> : <span className="text-gray-400">0</span>}
         </div>,
     );
 

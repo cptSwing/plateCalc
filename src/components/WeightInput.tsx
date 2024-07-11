@@ -10,7 +10,7 @@ const WeightInput = ({
     const [weightTempVal, setWeightTempVal] = useState(isNumber(targetWeight) ? (targetWeight as number) : 0);
 
     return (
-        <div className="h-fit rounded-md border-2 border-gray-300 text-sm shadow-md">
+        <div className="h-fit rounded-md border-2 border-gray-300 bg-gray-300 text-sm shadow-md">
             <label className="block border-b-2 border-gray-300 bg-gray-200 px-4 py-1" htmlFor="weightValue">
                 Target Weight
             </label>
@@ -32,7 +32,7 @@ const WeightInput = ({
                     }}
                 />
                 <button
-                    className="rounded-md border border-gray-500 bg-gray-300 p-1 text-gray-700 ring-gray-500/30 active:border-blue-700 active:text-white active:ring"
+                    className="rounded-md border border-gray-500 bg-gray-200 p-1 text-gray-700 ring-gray-500/30 hover:bg-gray-400 active:border-blue-700 active:text-white active:ring"
                     type="button"
                     onClick={() => {
                         setTargetWeight(weightTempVal);
