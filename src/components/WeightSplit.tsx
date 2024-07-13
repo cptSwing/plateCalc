@@ -24,7 +24,7 @@ const WeightSplit = ({
     }, [targetWeight]);
 
     return (
-        <div className="grid w-56 grid-cols-2 rounded-md border-2 border-gray-300 bg-gray-300 text-sm shadow-md">
+        <div className="grid size-full grid-cols-2 rounded-md border-2 border-gray-300 bg-gray-300 shadow-md">
             <div className="border-b-2 border-gray-300 bg-gray-200 p-1 text-center">Percentage</div>
             <div className=" border-b-2 border-l border-gray-300 bg-gray-200 p-1 text-center">Weight</div>
 

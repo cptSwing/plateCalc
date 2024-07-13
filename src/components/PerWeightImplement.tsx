@@ -67,28 +67,28 @@ function markupWrap(data: ImplementType, target: number, multipleDb = false) {
     return (
         <>
             {/* Count */}
-            <div className="w-full border-b  border-b-white bg-gray-400 pl-1 text-center italic text-gray-100">
+            <div className="flex w-full items-center justify-center border-b border-b-white bg-gray-400 pl-1 text-center italic text-gray-100">
                 {data.implementSides / 2}
             </div>
 
             {/* Gear */}
-            <div className="col-span-2  flex w-full items-center justify-between border-b border-l  border-x-gray-300 border-y-white bg-gray-400 px-1 text-gray-100">
+            <div className="col-span-2  flex w-full flex-wrap items-center justify-between border-b border-l  border-x-gray-300 border-y-white bg-gray-400 px-1 text-gray-100">
                 <div>{data.implementType}</div>
-                <div className="mr-0 whitespace-nowrap text-xs">({data.implementWeight} kg)</div>
+                <div className="mr-0 whitespace-nowrap">({data.implementWeight} kg)</div>
             </div>
 
             {/* Add per side */}
-            <div className="col-span-2 w-full border-b border-l  border-x-gray-300 border-y-white bg-gray-400 pl-1 text-center text-gray-100">
+            <div className="col-span-1 flex w-full items-center justify-center border-b border-l border-x-gray-300 border-y-white bg-gray-400 pl-1 text-center text-gray-100 sm:col-span-2">
                 {returnTargetWeight(target, data.implementWeight, multipleDb)}
             </div>
 
             {/* Plates to Add */}
-            <div className="col-span-4 w-full border-b border-l  border-x-gray-300 border-y-white bg-gray-400">
+            <div className="col-span-4 w-full border-b border-l border-x-gray-300 border-y-white bg-gray-400">
                 <ReturnSorted plates={closest.plates} />
             </div>
 
             {/* Closest */}
-            <div className="col-span-2 w-full border-b border-l  border-x-gray-300 border-y-white bg-gray-400 pl-1 text-center text-gray-100">
+            <div className="col-span-1 flex w-full items-center justify-center border-b border-l border-x-gray-300 border-y-white bg-gray-400 pl-1 text-center text-gray-100 sm:col-span-2">
                 {(multipleDb ? closest.achievedWeight * 2 : closest.achievedWeight) * 2 +
                     (multipleDb ? data.implementWeight * 2 : data.implementWeight)}{" "}
                 kg
@@ -101,48 +101,48 @@ const ReturnSorted = ({ plates }: { plates: PlateCountType }) => {
     const returnMarkup = [];
 
     returnMarkup.push(
-        <div className="w-full bg-gray-100 text-center" key={"15"}>
+        <div className="flex size-full items-center justify-center bg-gray-100 text-center" key={"15"}>
             {plates["15"] ? <span className="font-bold text-green-600">{plates["15"]}</span> : <span className="text-gray-400">0</span>}
         </div>,
     );
 
     returnMarkup.push(
-        <div className="mx-auto w-full bg-gray-300 text-center" key={"10"}>
+        <div className="flex size-full items-center justify-center bg-gray-300 text-center" key={"10"}>
             {plates["10"] ? <span className="font-bold text-green-600">{plates["10"]}</span> : <span className="text-gray-100">0</span>}
         </div>,
     );
 
     returnMarkup.push(
-        <div className="w-full bg-gray-100 text-center" key={"5"}>
+        <div className="flex size-full items-center justify-center bg-gray-100 text-center" key={"5"}>
             {plates["5"] ? <span className="font-bold text-green-600">{plates["5"]}</span> : <span className="text-gray-400">0</span>}
         </div>,
     );
 
     returnMarkup.push(
-        <div className="mx-auto w-full bg-gray-300 text-center" key={"2.5"}>
+        <div className="flex size-full items-center justify-center bg-gray-300 text-center" key={"2.5"}>
             {plates["2.5"] ? <span className="font-bold text-green-600">{plates["2.5"]}</span> : <span className="text-gray-100">0</span>}
         </div>,
     );
 
     returnMarkup.push(
-        <div className="w-full bg-gray-100 text-center" key={"2"}>
+        <div className="flex size-full items-center justify-center bg-gray-100 text-center" key={"2"}>
             {plates["2"] ? <span className="font-bold text-green-600">{plates["2"]}</span> : <span className="text-gray-400">0</span>}
         </div>,
     );
 
     returnMarkup.push(
-        <div className="mx-auto w-full bg-gray-300 text-center" key={"1.25"}>
+        <div className="flex size-full items-center justify-center bg-gray-300 text-center" key={"1.25"}>
             {plates["1.25"] ? <span className="font-bold text-green-600">{plates["1.25"]}</span> : <span className="text-gray-100">0</span>}
         </div>,
     );
 
     returnMarkup.push(
-        <div className="w-full bg-gray-100 text-center" key={"0.5"}>
+        <div className="flex size-full items-center justify-center bg-gray-100 text-center" key={"0.5"}>
             {plates["0.5"] ? <span className="font-bold text-green-600">{plates["0.5"]}</span> : <span className="text-gray-400">0</span>}
         </div>,
     );
 
-    return <div className="grid w-full grid-cols-7">{returnMarkup.map((elem) => elem)}</div>;
+    return <div className="grid size-full grid-cols-7">{returnMarkup.map((elem) => elem)}</div>;
 };
 
 type WeightPlatesType = number[];
