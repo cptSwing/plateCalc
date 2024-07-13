@@ -7,10 +7,10 @@ import WhichPlates from "../components/WhichPlates";
 const App = () => {
     const targetWeightState = useState<number | null>(null);
 
-    /* First run: */
-    useEffect(() => {
-        navigator.serviceWorker.register(new URL("../service-worker.js", import.meta.url), { type: "module", scope: "." });
-    }, []);
+    // /* First run: */
+    // useEffect(() => {
+    //     navigator.serviceWorker.register(new URL("../service-worker.js", import.meta.url), { type: "module", scope: "." });
+    // }, []);
 
     return (
         <div className="mx-2 my-2 w-fit sm:mx-auto sm:my-6 sm:w-3/4 lg:w-3/5">
