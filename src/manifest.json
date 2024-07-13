@@ -1,12 +1,14 @@
 {
-    "name": "PlateCalculator",
-    "short_name": "Pl.Calc",
+    "name": "Plate Calculator",
+    "short_name": "plateCalc",
     "description": "How many plates for a BIG pump?",
     "start_url": "./index.html",
-    "id": "id-PlateCalculator",
-    "display": "fullscreen",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
+    "display": "standalone",
+    "lang": "en",
+    "background_color": "#ff88ff",
+    "theme_color": "#ff0000",
+    "orientation": "natural",
+    "dir": "ltr",
     "icons": [
         {
             "src": "icon.png",
