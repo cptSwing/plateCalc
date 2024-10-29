@@ -20,19 +20,19 @@ const PerWeightImplement = ({
         let markup = <></>;
         const w = isNumber(targetWeight) ? (targetWeight as number) : 0;
         switch (implementData.implementType) {
-            case "TrapBar":
+            case "Trapbar":
                 markup = markupWrap(implementData, w);
                 break;
-            case "BarBell":
+            case "Barbell":
                 markup = markupWrap(implementData, w);
                 break;
             case "EzBar":
                 markup = markupWrap(implementData, w);
                 break;
-            case "DumbBell":
+            case "Dumbbell":
                 markup = markupWrap(implementData, w);
                 break;
-            // eg "Dumbbells":
+            // eg "2 Dumbbells":
             default:
                 markup = markupWrap({ ...implementData, implementSides: 4 }, w, true);
                 break;
@@ -67,9 +67,9 @@ function markupWrap(data: ImplementType, target: number, multipleDb = false) {
     return (
         <>
             {/* Count */}
-            <div className="flex w-full items-center justify-center border-b border-b-white bg-gray-400 pl-1 text-center italic text-gray-100">
+            {/* <div className="flex w-full items-center justify-center border-b border-b-white bg-gray-400 pl-1 text-center italic text-gray-100">
                 {data.implementSides / 2}
-            </div>
+            </div> */}
 
             {/* Gear */}
             <div className="col-span-2  flex w-full flex-wrap items-center justify-between border-b border-l  border-x-gray-300 border-y-white bg-gray-400 px-1 text-gray-100">
@@ -210,11 +210,11 @@ const quarterIfMultiple = (num: number, isMultiple: boolean) => {
 };
 
 export enum ImplementEnum {
-    "TrapBar" = 16,
-    "BarBell" = 10,
+    "Trapbar" = 16,
+    "Barbell" = 10,
     "EzBar" = 7.5,
-    "DumbBell" = 2,
-    "DumbBells" = 2.5,
+    "Dumbbell" = 2,
+    "2 Dumbbells" = 2.5,
 }
 
 export enum PlateCountEnum {

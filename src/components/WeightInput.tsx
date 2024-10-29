@@ -10,7 +10,7 @@ const WeightInput = ({
     const [weightTempVal, setWeightTempVal] = useState(isNumber(targetWeight) ? (targetWeight as number) : 0);
 
     return (
-        <div className="group size-full rounded-md border-2 border-gray-300 bg-gray-300 shadow-md">
+        <div className="group order-3 h-full self-stretch rounded-md border-2 border-gray-300 bg-gray-300 shadow-md sm:order-2 sm:basis-1/3">
             <label className="block border-b-2 border-gray-300 bg-gray-200 px-4 py-1 text-center" htmlFor="weightValue">
                 Target Weight
             </label>
