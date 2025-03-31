@@ -11,8 +11,8 @@
     "dir": "ltr",
     "icons": [
         {
-            "src": "icon.png",
-            "sizes": "192x192",
+            "src": "plates_512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ]

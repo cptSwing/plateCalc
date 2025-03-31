@@ -17,9 +17,12 @@ const WeightInput = ({
             >
                 Target Weight
             </label>
-            <form className="flex items-center justify-between p-1" onSubmit={(e) => e.preventDefault()}>
+            <form
+                className="flex flex-row items-center justify-between gap-1.5 p-1 sm:flex-col sm:pt-1.5"
+                onSubmit={(e) => e.preventDefault()}
+            >
                 <input
-                    className="w-2/5 min-w-9 rounded-sm py-1 text-center outline-4 outline-offset-1 outline-yellow-300/50 ring-[1px] ring-gray-500 group-hover:outline"
+                    className="w-1/2 rounded-sm py-1 text-center outline-4 outline-offset-1 outline-yellow-300/50 ring-[1px] ring-gray-500 group-hover:outline sm:w-[calc(100%-2px)]"
                     type="text"
                     id="weightValue"
                     name="weightValue"
@@ -36,7 +39,7 @@ const WeightInput = ({
                 />
 
                 <button
-                    className="w-2/5 min-w-9 rounded-md border border-gray-500 bg-gray-200 p-1 text-gray-700 ring-gray-500/30 hover:bg-gray-400 active:border-blue-700 active:text-white active:ring"
+                    className="w-1/2 rounded-md border border-gray-500 bg-gray-200 py-1 text-gray-700 ring-[1px] ring-gray-500/30 hover:bg-gray-400 active:border-blue-700 active:text-white active:ring sm:w-full"
                     type="button"
                     onClick={() => {
                         setTargetWeight(weightTempVal);

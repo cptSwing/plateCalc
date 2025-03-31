@@ -37,16 +37,16 @@ const WeightImplement = ({
 
     return (
         <>
-            {/* Gear */}
-            <div className="relative bg-[--grid-bg] text-[--grid-text]">
-                <span className="absolute left-1">{implementData_Memo.implementType}</span>
-                <span className="absolute right-1">({implementData_Memo.implementWeight} kg)</span>
+            {/* Tool */}
+            <div className="relative flex items-center justify-between bg-[--grid-bg] text-[--grid-text]">
+                <div className="absolute left-1 inline-block">{implementData_Memo.implementType}</div>
+                <div className="absolute right-1 inline-block">({implementData_Memo.implementWeight} kg)</div>
             </div>
 
-            {/* Add kg per side */}
+            {/* Add kg / side */}
             <div className="bg-[--grid-bg] text-center text-[--grid-text]">{targetWeight_Memo}</div>
 
-            {/* Plates to Add */}
+            {/* Add Plates / side */}
             <ReturnSorted plates={closestWeights_Memo.plates} />
 
             {/* Closest */}

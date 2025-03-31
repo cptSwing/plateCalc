@@ -8,7 +8,7 @@ const App = () => {
     const targetWeightState = useState<number | null>(null);
 
     return (
-        <div className="mx-auto flex w-full min-w-52 flex-col gap-2 p-2 text-sm [--element-bg:theme(colors.gray.300)] [--element-padding:theme(spacing.px)] [--grid-bg:theme(colors.gray.400)] [--grid-text:theme(colors.gray.100)] [--header-bg:theme(colors.gray.50)] [--header-padding:theme(spacing.1)] sm:p-2 sm:text-base md:w-5/6 xl:w-3/5">
+        <div className="mx-auto flex w-full min-w-52 flex-col gap-2 p-2 text-sm [--element-bg:theme(colors.gray.300)]  [--element-padding:theme(spacing.px)] [--grid-bg:theme(colors.gray.400)] [--grid-text:theme(colors.gray.100)] [--header-bg:theme(colors.gray.50)] [--header-padding:theme(spacing.1)] sm:text-base md:w-5/6 md:leading-relaxed lg:leading-loose xl:w-3/5">
             <Logo />
 
             <WeightGrid targetWeightState={targetWeightState} />

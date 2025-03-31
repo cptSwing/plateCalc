@@ -8,7 +8,7 @@ const WhichPlates = () => {
                 Available Plates
             </div>
 
-            <div className="grid w-full grid-cols-7 gap-x-6 p-0.5 pt-1 text-lg sm:gap-x-1 sm:pt-1.5 sm:text-xs lg:text-sm">
+            <div className="grid w-full grid-cols-7 gap-x-6 gap-y-1 p-1 text-lg sm:gap-x-1 sm:gap-y-2 sm:pt-1.5 sm:text-xs lg:text-sm">
                 <PlateDisplay />
 
                 <div className="flex items-center justify-center text-sm">{PlateCountEnum["_15"]}</div>
