@@ -33,10 +33,8 @@ const useLocalStorage = <T>(key: string, defaultValue: T) => {
     );
 
     if (item && typeof item === "string" && item !== "undefined") {
-        console.log("%c[useLocalStorage]", "color: #a85488", `${key} found :`, item);
         value = JSON.parse(item);
     } else {
-        console.log("%c[useLocalStorage]", "color: #524fc3", `setting new ${key} :`, defaultValue);
         setValue(defaultValue);
         value = defaultValue;
     }

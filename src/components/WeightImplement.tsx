@@ -1,39 +1,44 @@
 import { useMemo } from "react";
+import usePlates from "../hooks/usePlates";
+import { ImplementDataType, ImplementEnum, ImplementsType, RecordEntry } from "../types/plate-calculator";
 
 const WeightImplement = ({
     targetWeightState,
-    implement,
+    implementData,
 }: {
     targetWeightState: [number | null, React.Dispatch<React.SetStateAction<number | null>>];
-    implement: ImplementEnum;
+    implementData: [keyof ImplementsType, number];
 }) => {
+    const [implementName, implementWeight] = implementData;
     const [targetWeight] = targetWeightState;
-    const safeTargetWeight_Memo = useMemo(() => targetWeight ?? 0, [targetWeight]);
+    const safeTargetWeight = targetWeight ?? 0;
 
-    const implementData_Memo: ImplementType = useMemo(() => {
+    const numPlates = usePlates();
+
+    const implementData_Memo: ImplementDataType = useMemo(() => {
         return {
-            implementType: ImplementEnum[implement],
-            implementWeight: implement,
-            implementSides: ImplementEnum[implement] === "2 Dumbbells" ? 4 : 2,
-            multipleImplements: ImplementEnum[implement] === "2 Dumbbells" ? true : false,
+            implementType: implementName,
+            implementWeight: implementWeight,
+            implementSides: implementName === "2 Dumbbells" ? 4 : 2,
+            multipleImplements: implementName === "2 Dumbbells" ? true : false,
         };
-    }, [implement]);
+    }, [implementData]);
 
     const closestWeights_Memo = useMemo(() => {
         const { implementWeight, implementSides, multipleImplements } = implementData_Memo;
 
         const targetWeightWithSides = multipleImplements ? implementWeight * 2 : implementWeight;
-        const targetWeightCorrected = (safeTargetWeight_Memo - targetWeightWithSides) / implementSides;
+        const targetWeightCorrected = (safeTargetWeight - targetWeightWithSides) / implementSides;
 
-        const setLimits = getSetLimits(multipleImplements);
+        const setLimits = getSetLimits(numPlates, multipleImplements);
 
         return countWeightPlates(targetWeightCorrected, setLimits);
-    }, [safeTargetWeight_Memo, implementData_Memo]);
+    }, [safeTargetWeight, implementData_Memo]);
 
     const targetWeight_Memo = useMemo(() => {
         const { implementWeight, multipleImplements } = implementData_Memo;
-        return multipleImplements ? (safeTargetWeight_Memo - implementWeight * 2) / 2 / 2 : (safeTargetWeight_Memo - implementWeight) / 2;
-    }, [safeTargetWeight_Memo, implementData_Memo]);
+        return multipleImplements ? (safeTargetWeight - implementWeight * 2) / 2 / 2 : (safeTargetWeight - implementWeight) / 2;
+    }, [safeTargetWeight, implementData_Memo]);
 
     return (
         <>
@@ -105,33 +110,20 @@ const ReturnSorted = ({ plates }: { plates: PlateCountType }) => {
     );
 };
 
-const getSetLimits = (multipleDb: boolean) => ({
-    "15": quarterIfMultiple(2, multipleDb),
-    "10": quarterIfMultiple(6, multipleDb),
-    "5": quarterIfMultiple(8, multipleDb),
-    "2.5": quarterIfMultiple(8, multipleDb),
-    "2": quarterIfMultiple(4, multipleDb),
-    "1.25": quarterIfMultiple(6, multipleDb),
-    "0.5": quarterIfMultiple(8, multipleDb),
-});
+const getSetLimits = (numPlates: [number, number][], multipleDb: boolean) =>
+    numPlates.map(([type, count]) => [type, platesPerSide(count, multipleDb)] as [number, number]);
 
-type WeightPlatesType = number[];
 type PlateCountType = { [key: number]: number };
 type UsedPlatesType = PlateCountType;
 
-function countWeightPlates(targetWeight: number, plateCounts: PlateCountType) {
-    const weightPlates: WeightPlatesType = Object.entries(plateCounts).map(([string]) => parseFloat(string));
-
-    // Sort the weight plates array in descending order
-    const weightPlatesSorted = [...weightPlates].sort((a, b) => b - a);
-
-    function findCombination(remainingWeight: number, index: number, usedPlates: UsedPlatesType, achievedWeight: number) {
-        if (remainingWeight === 0 || index >= weightPlatesSorted.length) {
+const countWeightPlates = (targetWeight: number, platesPerSideCounts: [number, number][]) => {
+    const findCombination = (remainingWeight: number, index: number, usedPlates: UsedPlatesType, achievedWeight: number) => {
+        if (remainingWeight === 0 || index >= platesPerSideCounts.length) {
             return { achievedWeight, plates: usedPlates };
         }
 
-        const plateWeight = weightPlatesSorted[index];
-        const plateCount = Math.min(plateCounts[plateWeight] || 0, Math.floor(remainingWeight / plateWeight));
+        const plateWeight = platesPerSideCounts[index][0];
+        const plateCount = Math.min(platesPerSideCounts[index][1] || 0, Math.floor(remainingWeight / plateWeight));
 
         let bestResult = { achievedWeight, plates: usedPlates };
         for (let count = plateCount; count >= 0; count--) {
@@ -151,46 +143,21 @@ function countWeightPlates(targetWeight: number, plateCounts: PlateCountType) {
         }
 
         return bestResult;
-    }
+    };
 
     const bestCombination = findCombination(targetWeight, 0, {}, 0);
     return bestCombination;
-}
+};
 
-const quarterIfMultiple = (num: number, isMultiple: boolean) => {
+const platesPerSide = (count: number, isMultiple: boolean) => {
     if (isMultiple) {
-        const quartered = num / 4;
+        const quartered = count / 4;
         const floored = Math.floor(quartered);
         const isDecimal = floored !== quartered;
         const decimalReturn = isDecimal && floored > 0 ? floored : 0;
 
         return isDecimal ? decimalReturn : quartered;
     } else {
-        return num / 2;
+        return count / 2;
     }
-};
-
-export enum ImplementEnum {
-    "Trapbar" = 16,
-    "Barbell" = 10,
-    "EzBar" = 7.5,
-    "Dumbbell" = 2,
-    "2 Dumbbells" = 2.5,
-}
-
-export enum PlateCountEnum {
-    "_15" = 2,
-    "_10" = 6,
-    "_5" = 8,
-    "_2.5" = 10,
-    "_2" = 4,
-    "_1.25" = 6,
-    "_0.5" = 8,
-}
-
-type ImplementType = {
-    implementType: string;
-    implementWeight: ImplementEnum;
-    implementSides: number;
-    multipleImplements: boolean;
 };

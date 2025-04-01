@@ -1,8 +1,18 @@
-import { useContext, useMemo } from "react";
-import { PlatesContext } from "../views/App";
+import { useMemo } from "react";
+import useLocalStorage from "./useLocalStorage";
+
+export const defaultPlates = {
+    15: 2,
+    10: 6,
+    5: 8,
+    2.5: 10,
+    2: 4,
+    1.25: 6,
+    0.5: 8,
+};
 
 const usePlates = () => {
-    const plates = useContext(PlatesContext);
+    const [plates] = useLocalStorage("plates", defaultPlates);
 
     const filteredPlates_Memo: [number, number][] = useMemo(
         () =>

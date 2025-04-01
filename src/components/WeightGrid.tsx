@@ -1,19 +1,38 @@
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
+import { createContext } from "react";
+import { ImplementsType } from "../types/plate-calculator";
+import EditLocalStorage from "./EditLocalStorage";
 import PlateDisplay from "./PlateDisplay";
-import WeightImplement, { ImplementEnum } from "./WeightImplement";
+import WeightImplement from "./WeightImplement";
+import useLocalStorage from "../hooks/useLocalStorage";
+
+const defaultImplements: ImplementsType = {
+    "Trapbar": 16,
+    "Barbell": 10,
+    "EzBar": 7.5,
+    "Dumbbell": 2,
+    "2 Dumbbells": 2.5,
+};
+
+export const ImplementsContext = createContext(defaultImplements);
 
 const WeightGrid = ({ targetWeightState }: { targetWeightState: [number | null, React.Dispatch<React.SetStateAction<number | null>>] }) => {
-    return (
-        <div className="grid gap-px divide-red-400 rounded-md bg-[--element-bg] p-[--element-padding] shadow-md [grid-template-columns:0.75fr_0.5fr_1fr_0.333fr]">
-            {/* Grid labels */}
-            <GridLabels />
+    const [implementsValue] = useLocalStorage("tools", defaultImplements);
 
-            {/* Grid Data */}
-            <WeightImplement targetWeightState={targetWeightState} implement={ImplementEnum["Trapbar"]} />
-            <WeightImplement targetWeightState={targetWeightState} implement={ImplementEnum["Barbell"]} />
-            <WeightImplement targetWeightState={targetWeightState} implement={ImplementEnum["EzBar"]} />
-            <WeightImplement targetWeightState={targetWeightState} implement={ImplementEnum["Dumbbell"]} />
-            <WeightImplement targetWeightState={targetWeightState} implement={ImplementEnum["2 Dumbbells"]} />
+    return (
+        <div className="grid gap-px divide-red-400 rounded-md bg-[--element-bg] p-[--element-padding] shadow-md [grid-template-columns:0.9fr_0.5fr_1.3fr_0.3fr]">
+            <ImplementsContext.Provider value={defaultImplements}>
+                {/* Grid labels */}
+                <GridLabels />
+
+                {/* Grid Data */}
+                {Object.entries(implementsValue).map((implementData, idx) => (
+                    <WeightImplement
+                        key={`${implementData[0]}_${idx}`}
+                        targetWeightState={targetWeightState}
+                        implementData={implementData as [keyof ImplementsType, number]}
+                    />
+                ))}
+            </ImplementsContext.Provider>
 
             {/* Plates Symbols below */}
             <div className="col-start-3">
@@ -30,17 +49,25 @@ export default WeightGrid;
 const GridLabels = () => {
     return (
         <>
-            <div className="relative rounded-tl-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+1rem)] text-center font-semibold italic sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))]">
+            <div className="rounded-tl-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
                 Tool
-                <PencilSquareIcon className="absolute -right-2 top-0 aspect-square h-full pb-1 pt-4 text-gray-700/80 sm:-right-0.5 sm:py-1.5 md:py-1.5 lg:right-0 lg:py-2" />
+                <EditLocalStorage
+                    storageKey="tools"
+                    defaultValue={defaultImplements}
+                    classN="float-right aspect-square h-6 pt-px text-gray-700/60"
+                    stepVal={0.5}
+                    minVal={1}
+                    description="Tool"
+                    valueDescription="Weight (Kg)"
+                />
             </div>
-            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+1rem)] text-center font-semibold italic sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))]">
-                Add kg / side
+            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
+                Add / side
             </div>
-            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+1rem)] text-center font-semibold italic sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))]">
+            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
                 Add Plates / side
             </div>
-            <div className="rounded-tr-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+1rem)] text-center font-semibold italic sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))]">
+            <div className="rounded-tr-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
                 Nearest
             </div>
         </>
