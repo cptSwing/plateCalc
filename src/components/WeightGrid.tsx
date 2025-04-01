@@ -1,3 +1,4 @@
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import PlateDisplay from "./PlateDisplay";
 import WeightImplement, { ImplementEnum } from "./WeightImplement";
 
@@ -29,16 +30,17 @@ export default WeightGrid;
 const GridLabels = () => {
     return (
         <>
-            <div className="rounded-tl-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.25rem)] text-center font-semibold italic">
+            <div className="relative rounded-tl-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+1rem)] text-center font-semibold italic sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))]">
                 Tool
+                <PencilSquareIcon className="absolute -right-2 top-0 aspect-square h-full pb-1 pt-4 text-gray-700/80 sm:-right-0.5 sm:py-1.5 md:py-1.5 lg:right-0 lg:py-2" />
             </div>
-            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.25rem)] text-center font-semibold italic">
+            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+1rem)] text-center font-semibold italic sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))]">
                 Add kg / side
             </div>
-            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.25rem)] text-center font-semibold italic">
+            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+1rem)] text-center font-semibold italic sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))]">
                 Add Plates / side
             </div>
-            <div className="rounded-tr-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.25rem)] text-center font-semibold italic">
+            <div className="rounded-tr-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+1rem)] text-center font-semibold italic sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))]">
                 Nearest
             </div>
         </>

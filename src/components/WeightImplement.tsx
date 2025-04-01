@@ -71,7 +71,7 @@ const ReturnSorted = ({ plates }: { plates: PlateCountType }) => {
             </div>
 
             <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"10"}>
-                {plates["10"] ? <span className="font-bold text-green-600">{plates["10"]}</span> : <span className="text-gray-50">0</span>}
+                {plates["10"] ? <span className="font-bold text-green-600">{plates["10"]}</span> : <span className="text-white">0</span>}
             </div>
 
             <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"5"}>
@@ -79,11 +79,7 @@ const ReturnSorted = ({ plates }: { plates: PlateCountType }) => {
             </div>
 
             <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"2.5"}>
-                {plates["2.5"] ? (
-                    <span className="font-bold text-green-600">{plates["2.5"]}</span>
-                ) : (
-                    <span className="text-gray-50">0</span>
-                )}
+                {plates["2.5"] ? <span className="font-bold text-green-600">{plates["2.5"]}</span> : <span className="text-white">0</span>}
             </div>
 
             <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"2"}>
@@ -94,7 +90,7 @@ const ReturnSorted = ({ plates }: { plates: PlateCountType }) => {
                 {plates["1.25"] ? (
                     <span className="font-bold text-green-600">{plates["1.25"]}</span>
                 ) : (
-                    <span className="text-gray-50">0</span>
+                    <span className="text-white">0</span>
                 )}
             </div>
 

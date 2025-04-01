@@ -10,7 +10,7 @@ const WeightInput = ({
     const [weightTempVal, setWeightTempVal] = useState(isNumber(targetWeight) ? (targetWeight as number) : 0);
 
     return (
-        <div className="group order-3 self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-md sm:order-2 sm:basis-1/3">
+        <div className="order-3 self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-md sm:order-2 sm:basis-1/3">
             <label
                 className="block rounded-t-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic"
                 htmlFor="weightValue"
@@ -22,7 +22,7 @@ const WeightInput = ({
                 onSubmit={(e) => e.preventDefault()}
             >
                 <input
-                    className="w-1/2 rounded-sm py-1 text-center outline-4 outline-offset-1 outline-yellow-300/50 ring-[1px] ring-gray-500 group-hover:outline sm:w-[calc(100%-2px)]"
+                    className="w-1/2 rounded-bl-sm py-1 text-center outline-4 outline-offset-1 outline-yellow-300/50 ring-[1px] ring-gray-500 hover:outline focus:outline sm:w-[calc(100%-2px)] sm:rounded-none"
                     type="text"
                     id="weightValue"
                     name="weightValue"
@@ -39,7 +39,7 @@ const WeightInput = ({
                 />
 
                 <button
-                    className="w-1/2 rounded-md border border-gray-500 bg-gray-200 py-1 text-gray-700 ring-[1px] ring-gray-500/30 hover:bg-gray-400 active:border-blue-700 active:text-white active:ring sm:w-full"
+                    className="w-1/2 rounded-br-md border border-gray-500/50 bg-gray-400 py-1 text-gray-200  ring-gray-500/30 hover:border-gray-500 hover:bg-gray-400 hover:ring-1 hover:ring-blue-700/50 active:text-white active:ring-2 sm:w-full sm:rounded-b-md sm:rounded-tr-none"
                     type="button"
                     onClick={() => {
                         setTargetWeight(weightTempVal);
