@@ -24,16 +24,16 @@ const WeightSplit = ({
     }, [targetWeight]);
 
     return (
-        <div className="order-2 grid h-full grid-cols-2 self-stretch rounded-md border-2 border-gray-300 bg-gray-300 shadow-md sm:order-3 sm:basis-1/3">
-            <div className="border-b-2 border-gray-300 bg-gray-200 p-1 text-center">Percentage</div>
-            <div className=" border-b-2 border-l border-gray-300 bg-gray-200 p-1 text-center">Weight</div>
+        <div className="order-2 grid grid-cols-2 gap-px self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-md sm:order-3 sm:basis-1/3">
+            <div className="rounded-tl-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic">Percentage</div>
+            <div className="rounded-tr-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic">Weight</div>
 
-            <div className="border-b text-center">50%</div>
-            <div className="border-b  border-l text-center">{roundedNumbersMemo.half}</div>
-            <div className="border-b text-center">75%</div>
-            <div className="border-b  border-l text-center">{roundedNumbersMemo.threeQuarters}</div>
-            <div className="border-b text-center">100%</div>
-            <div className="border-b  border-l text-center">{roundedNumbersMemo.full}</div>
+            <div className="bg-[--grid-bg] text-center text-[--grid-text]">50%</div>
+            <div className="bg-[--grid-bg] text-center text-[--grid-text]">{roundedNumbersMemo.half}</div>
+            <div className="bg-[--grid-bg] text-center text-[--grid-text]">75%</div>
+            <div className="bg-[--grid-bg] text-center text-[--grid-text]">{roundedNumbersMemo.threeQuarters}</div>
+            <div className="rounded-bl-md bg-[--grid-bg] text-center text-[--grid-text]">100%</div>
+            <div className="rounded-br-md bg-[--grid-bg] text-center text-[--grid-text]">{roundedNumbersMemo.full}</div>
         </div>
     );
 };

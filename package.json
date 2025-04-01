@@ -4,10 +4,12 @@
         "build": "parcel build ./src/index.html"
     },
     "devDependencies": {
+        "@heroicons/react": "^2.2.0",
         "@parcel/packager-raw-url": "^2.10.3",
         "@parcel/transformer-webmanifest": "^2.10.3",
         "@types/prettier": "^3.0.0",
         "@types/react": "^18.2.79",
+        "@types/serviceworker": "^0.0.127",
         "eslint": "^9.0.0",
         "eslint-config-prettier": "^8.5.0",
         "parcel": "^2.10.3",
