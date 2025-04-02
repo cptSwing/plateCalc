@@ -1,0 +1,19 @@
+{
+    "name": "Plate Calculator",
+    "short_name": "plateCalc",
+    "description": "How many plates for a BIG pump?",
+    "start_url": "./offline",
+    "display": "standalone",
+    "orientation": "natural",
+    "theme_color": "#add8e6",
+    "background_color": "#ff88ff",
+    "generateIconOptions": {
+        "baseIcon": "./src/plates_512.png",
+        "sizes": [
+            192,
+            384,
+            512
+        ],
+        "genFavicons": true
+    }
+}

@@ -19,7 +19,7 @@ const WeightGrid = ({ targetWeightState }: { targetWeightState: [number | null, 
     const [implementsValue] = useLocalStorage("tools", defaultImplements);
 
     return (
-        <div className="grid gap-px divide-red-400 rounded-md bg-[--element-bg] p-[--element-padding] shadow-md [grid-template-columns:0.9fr_0.5fr_1.3fr_0.3fr]">
+        <div className="grid gap-px divide-red-400 rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg [grid-template-columns:0.9fr_0.5fr_1.3fr_0.3fr]">
             <ImplementsContext.Provider value={defaultImplements}>
                 {/* Grid labels */}
                 <GridLabels />
@@ -49,7 +49,7 @@ export default WeightGrid;
 const GridLabels = () => {
     return (
         <>
-            <div className="rounded-tl-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
+            <div className="rounded-tl-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
                 Tool
                 <EditLocalStorage
                     storageKey="tools"
@@ -61,13 +61,13 @@ const GridLabels = () => {
                     valueDescription="Weight (Kg)"
                 />
             </div>
-            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
+            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
                 Add / side
             </div>
-            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
+            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
                 Add Plates / side
             </div>
-            <div className="rounded-tr-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
+            <div className="rounded-tr-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
                 Nearest
             </div>
         </>

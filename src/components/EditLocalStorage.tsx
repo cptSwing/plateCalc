@@ -60,10 +60,10 @@ const Modal: FC<{
 
     return (
         <div className="fixed bottom-0 left-0 right-0 top-0 z-50 flex flex-col items-center justify-center bg-gray-800/50 not-italic">
-            <div className="max-h-[90%] max-w-[90%] rounded-md bg-gray-400 md:max-h-[50%] md:max-w-[50%]">
+            <div className="max-h-[90%] max-w-[90%] rounded-md bg-gray-400 shadow-xl md:max-h-[50%] md:max-w-[50%]">
                 <div className="mb-4 flex flex-row items-center justify-between rounded-t-md bg-[--header-bg] p-[--header-padding] text-[--header-text]">
                     <span
-                        className="cursor-pointer rounded-sm border border-gray-300 px-2 hover:bg-gray-400 hover:text-white active:bg-gray-400 active:text-white"
+                        className="cursor-pointer rounded-sm rounded-tl-md border border-gray-300 px-2 hover:bg-gray-400 hover:text-white active:bg-gray-400 active:text-white"
                         onClick={() => setValue(defaultValue)}
                     >
                         Set Default
@@ -72,17 +72,17 @@ const Modal: FC<{
                     <span className="text-lg capitalize">{storageKey}</span>
 
                     <span
-                        className="cursor-pointer rounded-sm border border-gray-300 px-2 hover:bg-gray-400 hover:text-white active:bg-gray-400 active:text-white"
+                        className="cursor-pointer rounded-sm rounded-tr-md border border-gray-300 px-2 hover:bg-gray-400 hover:text-white active:bg-gray-400 active:text-white"
                         onClick={() => setModalIsOpen(false)}
                     >
                         Close
                     </span>
                 </div>
                 <div className="mx-auto grid min-w-[75%] grid-cols-4 gap-y-2 p-4 pt-0 text-white">
-                    <div className="text-italic px-4 text-left">{description}</div>
-                    <div className="text-italic">{valueDescription}</div>
-                    <div className="text-italic px-4 text-left">{description}</div>
-                    <div className="text-italic">{valueDescription}</div>
+                    <div className="text-italic px-4 text-left underline">{description}</div>
+                    <div className="text-italic underline">{valueDescription}</div>
+                    <div className="text-italic px-4 text-left underline">{description}</div>
+                    <div className="text-italic underline">{valueDescription}</div>
                     <ModalEntries lsValue={value} setLsValue={setValue} stepVal={stepVal} minVal={minVal} />
                 </div>
             </div>
@@ -102,6 +102,7 @@ const ModalEntries: FC<{
                 <span className="inline-block text-nowrap px-4 text-left">{key}</span>
                 <input
                     type="number"
+                    name={`${key}_${val}_input`}
                     defaultValue={val}
                     className="mx-auto inline-block w-3/4 text-right text-black invalid:bg-red-400"
                     step={stepVal}

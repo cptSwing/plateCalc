@@ -14,9 +14,9 @@ const WeightInput = ({
     }, [weightTempVal]);
 
     return (
-        <div className="order-3 self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-md sm:order-2 sm:basis-1/3">
+        <div className="order-3 self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg sm:order-2 sm:basis-1/3">
             <label
-                className="block rounded-t-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic"
+                className="block rounded-t-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic shadow-sm"
                 htmlFor="weightValue"
             >
                 Target Weight

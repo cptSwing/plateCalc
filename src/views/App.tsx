@@ -12,7 +12,7 @@ const App = () => {
 
     return (
         <div
-            className={`mx-auto mt-2 flex w-[calc(100%-theme(spacing.6))] flex-col gap-2 text-sm leading-relaxed sm:w-[90%] md:w-5/6 md:leading-loose xl:w-3/5 ${variableCssClassNames}`}
+            className={`mx-auto mt-2 flex w-[calc(100%-theme(spacing.6))] flex-col gap-2 text-sm leading-relaxed text-slate-800 sm:w-[90%] md:w-5/6 md:leading-loose xl:w-3/5 ${variableCssClassNames}`}
         >
             <Logo />
             <WeightGrid targetWeightState={targetWeightState} />
@@ -29,5 +29,5 @@ const App = () => {
 export default App;
 
 const Logo = () => {
-    return <div className="z-10 -mb-5 ml-1 text-4xl font-bold italic leading-none text-[--element-bg]">plateCalc</div>;
+    return <div className="z-10 -mb-5 ml-1 text-4xl font-bold italic leading-none text-[--element-bg] drop-shadow-sm">plateCalc</div>;
 };

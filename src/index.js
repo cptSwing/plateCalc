@@ -12,6 +12,7 @@ if ("serviceWorker" in navigator) {
         .register(new URL("./service-worker.ts", import.meta.url), { type: "module", scope: "." })
         .then((serviceWorker) => {
             console.log("Service Worker registered: ", serviceWorker);
+            console.log(import.meta.url);
         })
         .catch(function (err) {
             console.error(err);

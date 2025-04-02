@@ -24,9 +24,9 @@ const WeightSplit = ({
     }, [targetWeight]);
 
     return (
-        <div className="order-2 grid grid-cols-2 gap-px self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-md sm:order-3 sm:basis-1/3">
-            <div className="rounded-tl-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic">Percentage</div>
-            <div className="rounded-tr-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic">Weight</div>
+        <div className="order-2 grid grid-cols-2 gap-px self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg sm:order-3 sm:basis-1/3">
+            <div className="rounded-tl-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic shadow-sm">Percentage</div>
+            <div className="rounded-tr-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic shadow-sm">Weight</div>
 
             <div className="bg-[--grid-bg] text-center text-[--grid-text]">50%</div>
             <div className="bg-[--grid-bg] text-center text-[--grid-text]">{roundedNumbersMemo.half}</div>

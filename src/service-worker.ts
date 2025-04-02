@@ -14,9 +14,14 @@ self.addEventListener("fetch", (e: FetchEvent) => {
     e.respondWith(swfetch(e));
 });
 
+self.addEventListener("offline", (e: Event) => {
+    console.log("Offline!");
+});
+
 const install = async () => {
     const cache = await caches.open(version);
     await cache.addAll(manifest);
+    self.skipWaiting();
 };
 
 const activate = async () => {
@@ -26,6 +31,11 @@ const activate = async () => {
 
 const swfetch = async (e: FetchEvent) => {
     const cachedResponse = await caches.match(e.request);
-    if (cachedResponse) return cachedResponse;
-    return fetch(e.request);
+
+    if (cachedResponse) {
+        return cachedResponse;
+    } else {
+        console.log("No cached response found!");
+        return fetch(e.request);
+    }
 };

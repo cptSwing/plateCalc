@@ -1,9 +1,7 @@
 # plateCalc
 
-How many plates per side of, say, a Barbell ❚█══█❚, to reach the target weight?
+How many plates per side of, say, a Barbell ❚█══█❚, to reach your target weight?
 
-Values for Weight implements are hard-coded for now, I have a [codesandbox](https://codesandbox.io/p/github/cptSwing/plateCalc/) running [this preview](https://8p4hq5-1234.csb.app/) though, so feel free to fork or edit values in-place there :)
+Install as a PWA on your mobile / your desktop!
 
-No PWA implementation as of now (though planned).
-
-Icon by Xin Corleone, https://thenounproject.com/icon/weight-plate-7219220/
+PWA Icon by Xin Corleone, https://thenounproject.com/icon/weight-plate-7219220/

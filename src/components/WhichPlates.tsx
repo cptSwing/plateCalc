@@ -6,8 +6,8 @@ const WhichPlates = () => {
     const plates = usePlates();
 
     return (
-        <div className="order-1 flex flex-col items-center justify-start self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-md sm:basis-1/3 ">
-            <div className="w-full rounded-t-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic">
+        <div className="order-1 flex flex-col items-center justify-start self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg sm:basis-1/3 ">
+            <div className="w-full rounded-t-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic shadow-sm">
                 Available Plates
                 <EditLocalStorage
                     storageKey="plates"
