@@ -9,12 +9,11 @@ document.__isRootWindow = true;
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
-        .register(new URL("./service-worker.ts", import.meta.url), { type: "module", scope: "." })
-        .then((serviceWorker) => {
-            console.log("Service Worker registered: ", serviceWorker);
-            console.log(import.meta.url);
+        .register(new URL("./serviceWorker.ts", import.meta.url), { type: "module", scope: "." })
+        .then(() => {
+            console.log("Service Worker: Registered.");
         })
-        .catch(function (err) {
-            console.error(err);
+        .catch((err) => {
+            console.error("Service Worker: Error when registering: ", err);
         });
 }

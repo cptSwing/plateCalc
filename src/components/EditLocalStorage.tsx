@@ -78,7 +78,7 @@ const Modal: FC<{
                         Close
                     </span>
                 </div>
-                <div className="mx-auto grid min-w-[75%] grid-cols-4 gap-y-2 p-4 pt-0 text-white">
+                <div className="relative mx-auto grid w-full min-w-[75%] grid-cols-4 gap-y-2 p-4 pt-0 text-white">
                     <div className="text-italic px-4 text-left underline">{description}</div>
                     <div className="text-italic underline">{valueDescription}</div>
                     <div className="text-italic px-4 text-left underline">{description}</div>
@@ -99,12 +99,12 @@ const ModalEntries: FC<{
     return Object.entries(lsValue as Record<string, number>).map(([key, val], idx) => {
         return (
             <Fragment key={`${key}_${val}_${idx}`}>
-                <span className="inline-block text-nowrap px-4 text-left">{key}</span>
+                <span className="ml-1 mr-auto inline-block w-full text-nowrap px-4 text-left">{key}</span>
                 <input
                     type="number"
                     name={`${key}_${val}_input`}
                     defaultValue={val}
-                    className="mx-auto inline-block w-3/4 text-right text-black invalid:bg-red-400"
+                    className="ml-auto mr-1 inline-block w-full pr-1 text-right text-black invalid:bg-red-400"
                     step={stepVal}
                     min={minVal}
                     onInput={(ev) => {
