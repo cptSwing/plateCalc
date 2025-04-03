@@ -1,8 +1,8 @@
 import { useState } from "react";
 import WeightInput from "../components/WeightInput";
-import WeightSplit from "../components/WeightSplit";
-import WhichPlates from "../components/WhichPlates";
+import AvailablePlates from "../components/AvailablePlates";
 import WeightGrid from "../components/WeightGrid";
+import WarmupWeights from "../components/WarmupWeights";
 
 const variableCssClassNames =
     "[--element-bg:theme(colors.gray.300)] [--element-padding:theme(spacing.px)] [--grid-bg:theme(colors.gray.400)] [--grid-text:theme(colors.gray.100)] [--header-bg:theme(colors.gray.50)] [--header-padding:theme(spacing.1)]";
@@ -18,9 +18,9 @@ const App = () => {
             <WeightGrid targetWeightState={targetWeightState} />
 
             <div className="flex size-full flex-col items-center justify-between gap-2 sm:flex-row ">
-                <WhichPlates />
-                <WeightSplit targetWeightState={targetWeightState} />
                 <WeightInput targetWeightState={targetWeightState} />
+                <WarmupWeights targetWeightState={targetWeightState} />
+                <AvailablePlates />
             </div>
         </div>
     );

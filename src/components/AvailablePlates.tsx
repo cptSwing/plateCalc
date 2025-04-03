@@ -2,13 +2,13 @@ import EditLocalStorage from "./EditLocalStorage";
 import PlateDisplay from "./PlateDisplay";
 import usePlates, { defaultPlates } from "../hooks/usePlates";
 
-const WhichPlates = () => {
+const AvailablePlates = () => {
     const plates = usePlates();
 
     return (
-        <div className="order-1 flex flex-col items-center justify-start self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg sm:basis-1/3 ">
+        <div className="flex flex-col items-center justify-start self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg sm:order-3 sm:basis-[30%]">
             <div className="w-full rounded-t-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic shadow-sm">
-                Available Plates
+                Edit Plate-Set
                 <EditLocalStorage
                     storageKey="plates"
                     defaultValue={defaultPlates}
@@ -20,7 +20,7 @@ const WhichPlates = () => {
                 />
             </div>
 
-            <div className="grid w-full grid-cols-7 gap-x-6 gap-y-2 p-1 text-lg sm:gap-x-1 sm:gap-y-2 sm:pt-1.5 sm:text-xs lg:text-sm">
+            <div className="grid w-full grid-cols-7 gap-x-6 p-1 text-base sm:gap-x-1 sm:gap-y-2 sm:py-4 sm:text-2xs md:text-xs lg:text-sm">
                 <PlateDisplay />
 
                 {plates.map(([plateType, count], idx) => (
@@ -33,4 +33,4 @@ const WhichPlates = () => {
     );
 };
 
-export default WhichPlates;
+export default AvailablePlates;

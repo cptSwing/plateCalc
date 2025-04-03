@@ -1,20 +1,20 @@
 declare module "plate-calculator/lib/plateCalculator";
 
-export enum ImplementEnum {
+export enum BarEnum {
     "Trapbar",
     "Barbell",
     "EzBar",
-    "Dumbbell",
+    "1 Dumbbell",
     "2 Dumbbells",
 }
 
-export type ImplementsType = Record<keyof typeof ImplementEnum, number>;
+export type BarsType = Record<keyof typeof BarEnum, number>;
 
 export type RecordEntry<T> = Record<string, T>;
 
-export type ImplementDataType = {
-    implementType: string;
-    implementWeight: ImplementEnum;
-    implementSides: number;
-    multipleImplements: boolean;
+export type BarDataType = {
+    barType: string;
+    barWeight: BarEnum;
+    barSides: number;
+    multipleBars: boolean;
 };

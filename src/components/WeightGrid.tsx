@@ -1,37 +1,38 @@
-import { ImplementsType } from "../types/plate-calculator";
+import { BarsType } from "../types/plate-calculator";
 import EditLocalStorage from "./EditLocalStorage";
 import PlateDisplay from "./PlateDisplay";
-import WeightImplement from "./WeightImplement";
+import WeightBar from "./WeightBar";
 import useLocalStorage from "../hooks/useLocalStorage";
 
-const defaultImplements: ImplementsType = {
+const defaultBars: BarsType = {
     "Trapbar": 16,
     "Barbell": 10,
     "EzBar": 7.5,
-    "Dumbbell": 2,
+    "1 Dumbbell": 2,
     "2 Dumbbells": 2.5,
 };
 
 const WeightGrid = ({ targetWeightState }: { targetWeightState: [number | null, React.Dispatch<React.SetStateAction<number | null>>] }) => {
-    const [implementsValue] = useLocalStorage("tools", defaultImplements);
+    const [barsValue] = useLocalStorage("tools", defaultBars);
 
     return (
-        <div className="grid gap-px divide-red-400 rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg [grid-template-columns:0.9fr_0.5fr_1.3fr_0.3fr]">
+        <div className="sm:grid-template-desktop grid-template-mobile grid gap-px rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg">
             {/* Grid labels */}
             <GridLabels />
 
             {/* Grid Data */}
-            {Object.entries(implementsValue).map((implementData, idx) => (
-                <WeightImplement
-                    key={`${implementData[0]}_${idx}`}
+            {Object.entries(barsValue).map((barData, idx) => (
+                <WeightBar
+                    key={`${barData[0]}_${idx}`}
+                    row={idx + 1}
                     targetWeightState={targetWeightState}
-                    implementData={implementData as [keyof ImplementsType, number]}
+                    barData={barData as [keyof BarsType, number]}
                 />
             ))}
 
             {/* Plates Symbols below */}
-            <div className="col-start-3 [grid-area:plate-display]">
-                <div className="grid w-full grid-cols-7 gap-px py-1 text-2xs sm:gap-0.5 sm:text-xs md:gap-1 md:text-sm lg:text-base">
+            <div className="grid-footer-plates">
+                <div className="grid w-full grid-cols-7 gap-0.5 py-1 text-xs sm:gap-0.5 md:gap-1 md:text-sm lg:text-lg">
                     <PlateDisplay />
                 </div>
             </div>
@@ -44,11 +45,11 @@ export default WeightGrid;
 const GridLabels = () => {
     return (
         <>
-            <div className="rounded-tl-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm [grid-area:header] sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
-                Tool
+            <div className="grid-header-bar rounded-tl-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
+                Bar
                 <EditLocalStorage
                     storageKey="tools"
-                    defaultValue={defaultImplements}
+                    defaultValue={defaultBars}
                     classN="float-right aspect-square h-6 pt-px text-gray-700/60"
                     stepVal={0.5}
                     minVal={1}
@@ -56,14 +57,17 @@ const GridLabels = () => {
                     valueDescription="Weight (Kg)"
                 />
             </div>
-            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm [grid-area:header] sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
-                Add / side
+
+            <div className="grid-header-nearest rounded-tr-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:rounded-none sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
+                Nearest Result
             </div>
-            <div className="bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm [grid-area:header] sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
-                Add Plates / side
+
+            <div className="grid-header-plate-per-side bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
+                Plates / Side
             </div>
-            <div className="rounded-tr-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm [grid-area:header] sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
-                Nearest
+
+            <div className="grid-header-kg-per-side bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:rounded-tr-md sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
+                Added Kg / Side
             </div>
         </>
     );

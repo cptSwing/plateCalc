@@ -1,5 +1,5 @@
 import { FormEvent, FormEventHandler, useEffect, useRef, useState } from "react";
-import { isNumber } from "./WeightSplit";
+import { isNumber } from "./WarmupWeights";
 
 const WeightInput = ({
     targetWeightState,
@@ -14,12 +14,12 @@ const WeightInput = ({
     }, [weightTempVal]);
 
     return (
-        <div className="order-3 self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg sm:order-2 sm:basis-1/3">
+        <div className="my-2 self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg outline outline-2 outline-offset-2 outline-green-500/50 sm:order-2 sm:my-0 sm:basis-1/3">
             <label
                 className="block rounded-t-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic shadow-sm"
                 htmlFor="weightValue"
             >
-                Target Weight
+                Total Target Weight
             </label>
             <form
                 className="flex flex-row items-center justify-between gap-1.5 p-1 sm:flex-col sm:pt-1.5"
@@ -30,15 +30,17 @@ const WeightInput = ({
                 }}
             >
                 <input
-                    className="w-1/2 rounded-bl-sm py-1 text-center outline-4 outline-offset-1 outline-yellow-300/50 ring-[1px] ring-gray-500 hover:outline focus:outline sm:w-[calc(100%-2px)] sm:rounded-none"
-                    type="text"
+                    className="w-1/2 rounded-md border border-green-600 py-1 text-center font-semibold focus:border-green-400 sm:w-[calc(100%-2px)]"
+                    type="number"
+                    step={0.5}
+                    min={0}
                     id="weightValue"
                     name="weightValue"
                     defaultValue={weightTempVal}
                 />
 
                 <button
-                    className="w-1/2 rounded-br-md border border-gray-500/50 bg-gray-400 py-1 text-gray-200  ring-gray-500/30 hover:border-gray-500 hover:bg-gray-400 hover:ring-1 hover:ring-blue-700/50 active:text-white active:ring-2 sm:w-full sm:rounded-b-md sm:rounded-tr-none"
+                    className="w-1/2 rounded-md border border-gray-500 bg-green-400 py-1 font-semibold text-gray-100 hover:border-green-300 hover:bg-green-600 hover:text-white active:border-green-400 active:bg-green-800 active:text-white sm:w-full"
                     type="submit"
                 >
                     Calculate

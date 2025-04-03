@@ -1,76 +1,107 @@
 import { useMemo } from "react";
 import usePlates from "../hooks/usePlates";
-import { ImplementDataType, ImplementEnum, ImplementsType, RecordEntry } from "../types/plate-calculator";
+import { BarDataType, BarEnum, BarsType, RecordEntry } from "../types/plate-calculator";
+import classNames from "../lib/classNames";
 
-const WeightImplement = ({
+const WeightBar = ({
+    row,
     targetWeightState,
-    implementData,
+    barData,
 }: {
+    row: number;
     targetWeightState: [number | null, React.Dispatch<React.SetStateAction<number | null>>];
-    implementData: [keyof ImplementsType, number];
+    barData: [keyof BarsType, number];
 }) => {
-    const [implementName, implementWeight] = implementData;
+    const [barName, barWeight] = barData;
     const [targetWeight] = targetWeightState;
     const safeTargetWeight = targetWeight ?? 0;
 
     const numPlates = usePlates();
 
-    const implementData_Memo: ImplementDataType = useMemo(() => {
+    const barData_Memo: BarDataType = useMemo(() => {
         return {
-            implementType: implementName,
-            implementWeight: implementWeight,
-            implementSides: implementName === "2 Dumbbells" ? 4 : 2,
-            multipleImplements: implementName === "2 Dumbbells" ? true : false,
+            barType: barName,
+            barWeight: barWeight,
+            barSides: barName === "2 Dumbbells" ? 4 : 2,
+            multipleBars: barName === "2 Dumbbells" ? true : false,
         };
-    }, [implementData]);
+    }, [barData]);
 
-    const closestWeights_Memo = useMemo(() => {
-        const { implementWeight, implementSides, multipleImplements } = implementData_Memo;
+    const weightsPerSide_Memo = useMemo(() => {
+        const { barWeight, barSides, multipleBars } = barData_Memo;
 
-        const targetWeightWithSides = multipleImplements ? implementWeight * 2 : implementWeight;
-        const targetWeightCorrected = (safeTargetWeight - targetWeightWithSides) / implementSides;
+        const targetWeightWithSides = multipleBars ? barWeight * 2 : barWeight;
+        const targetWeightCorrected = (safeTargetWeight - targetWeightWithSides) / barSides;
 
-        const setLimits = getSetLimits(numPlates, multipleImplements);
+        const setLimits = getSetLimits(numPlates, multipleBars);
 
         return countWeightPlates(targetWeightCorrected, setLimits);
-    }, [safeTargetWeight, implementData_Memo]);
+    }, [safeTargetWeight, barData_Memo]);
 
-    const targetWeight_Memo = useMemo(() => {
-        const { implementWeight, multipleImplements } = implementData_Memo;
-        return multipleImplements ? (safeTargetWeight - implementWeight * 2) / 2 / 2 : (safeTargetWeight - implementWeight) / 2;
-    }, [safeTargetWeight, implementData_Memo]);
+    const targetWeightPerSide_Memo = useMemo(() => {
+        const { barWeight, multipleBars } = barData_Memo;
+        return multipleBars ? (safeTargetWeight - barWeight * 2) / 2 / 2 : (safeTargetWeight - barWeight) / 2;
+    }, [safeTargetWeight, barData_Memo]);
+
+    const nearestResult_Memo = useMemo(() => {
+        const closestPerSide = weightsPerSide_Memo.achievedWeight;
+        const toolWeight = barData_Memo.barWeight;
+
+        let closestTotal;
+        if (barData_Memo.multipleBars) {
+            closestTotal = closestPerSide * 2 * 2 + toolWeight * 2;
+        } else {
+            closestTotal = closestPerSide * 2 + toolWeight;
+        }
+
+        return {
+            total: closestTotal,
+            side: closestPerSide,
+        };
+    }, [weightsPerSide_Memo, barData_Memo]);
 
     return (
         <>
             {/* Tool */}
-            <div className="relative flex items-center justify-between bg-[--grid-bg] text-[--grid-text]">
-                <div className="absolute left-1 inline-block">{implementData_Memo.implementType}</div>
-                <div className="absolute right-1 inline-block">({implementData_Memo.implementWeight} kg)</div>
+            <div
+                className="relative flex items-center justify-between bg-[--grid-bg] text-[--grid-text]"
+                style={{ gridArea: `grid-element-bar-${row}` }}
+            >
+                <div className="absolute left-1 inline-block">{barData_Memo.barType}</div>
+                <div className="absolute right-1 inline-block">({barData_Memo.barWeight} kg)</div>
             </div>
 
-            {/* Add kg / side */}
-            <div className="bg-[--grid-bg] text-center text-[--grid-text]">{targetWeight_Memo}</div>
+            {/* Nearest */}
+            <div
+                className={classNames(
+                    "text-center text-[--grid-text]",
+                    safeTargetWeight !== nearestResult_Memo.total ? "bg-red-300" : "bg-[--grid-bg]",
+                )}
+                style={{ gridArea: `grid-element-nearest-${row}` }}
+            >
+                {nearestResult_Memo.total} kg
+            </div>
 
             {/* Add Plates / side */}
-            <ReturnSorted plates={closestWeights_Memo.plates} />
+            <ReturnSorted plates={weightsPerSide_Memo.plates} row={row} />
 
-            {/* Closest */}
-            <div className="bg-[--grid-bg] text-center text-[--grid-text]">
-                {(implementData_Memo.multipleImplements ? closestWeights_Memo.achievedWeight * 2 : closestWeights_Memo.achievedWeight) * 2 +
-                    (implementData_Memo.multipleImplements
-                        ? implementData_Memo.implementWeight * 2
-                        : implementData_Memo.implementWeight)}{" "}
-                kg
+            {/* Add kg / side */}
+            <div className="bg-[--grid-bg] text-center text-[--grid-text]" style={{ gridArea: `grid-element-kg-per-side-${row}` }}>
+                {nearestResult_Memo.side}
+                {safeTargetWeight !== nearestResult_Memo.total && targetWeightPerSide_Memo > 0 && (
+                    <span className="text-red-300"> ({targetWeightPerSide_Memo})</span>
+                )}{" "}
+                kg{" "}
             </div>
         </>
     );
 };
 
-export default WeightImplement;
+export default WeightBar;
 
-const ReturnSorted = ({ plates }: { plates: PlateCountType }) => {
+const ReturnSorted = ({ plates, row }: { plates: PlateCountType; row: number }) => {
     return (
-        <div className="grid size-full grid-cols-7">
+        <div className="grid size-full grid-cols-7" style={{ gridArea: `grid-element-plates-per-side-${row}` }}>
             <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"15"}>
                 {plates["15"] ? <span className="font-bold text-green-600">{plates["15"]}</span> : <span className="text-gray-400">0</span>}
             </div>
