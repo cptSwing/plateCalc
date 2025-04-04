@@ -61,7 +61,7 @@ const Modal: FC<{
     return (
         <div className="fixed bottom-0 left-0 right-0 top-0 z-50 flex flex-col items-center justify-center bg-gray-800/50 not-italic">
             <div className="max-h-[90%] max-w-[90%] rounded-md bg-gray-400 shadow-xl md:max-h-[50%] md:max-w-[50%]">
-                <div className="mb-4 flex flex-row items-center justify-between rounded-t-md bg-[--header-bg] p-[--header-padding] text-[--header-text]">
+                <div className="mb-4 flex flex-row items-center justify-between rounded-t-md bg-[--grid-header-bg] p-[--grid-header-padding] text-[--header-text]">
                     <span
                         className="cursor-pointer rounded-sm rounded-tl-md border border-gray-300 px-2 hover:bg-gray-400 hover:text-white active:bg-gray-400 active:text-white"
                         onClick={() => setValue(defaultValue)}

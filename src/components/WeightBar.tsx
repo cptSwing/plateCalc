@@ -4,11 +4,11 @@ import { BarDataType, BarEnum, BarsType, RecordEntry } from "../types/plate-calc
 import classNames from "../lib/classNames";
 
 const WeightBar = ({
-    row,
+    gridRow,
     targetWeightState,
     barData,
 }: {
-    row: number;
+    gridRow: number;
     targetWeightState: [number | null, React.Dispatch<React.SetStateAction<number | null>>];
     barData: [keyof BarsType, number];
 }) => {
@@ -43,7 +43,7 @@ const WeightBar = ({
         return multipleBars ? (safeTargetWeight - barWeight * 2) / 2 / 2 : (safeTargetWeight - barWeight) / 2;
     }, [safeTargetWeight, barData_Memo]);
 
-    const nearestResult_Memo = useMemo(() => {
+    const closestResult_Memo = useMemo(() => {
         const closestPerSide = weightsPerSide_Memo.achievedWeight;
         const toolWeight = barData_Memo.barWeight;
 
@@ -64,34 +64,42 @@ const WeightBar = ({
         <>
             {/* Tool */}
             <div
-                className="relative flex items-center justify-between bg-[--grid-bg] text-[--grid-text]"
-                style={{ gridArea: `grid-element-bar-${row}` }}
+                className="type relative bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-[--grid-element-text-color] [&:nth-child(8n+1)]:bg-[--grid-element-bg-2]"
+                style={{
+                    gridRow: `plate-grid-row-first ${gridRow}`,
+                }}
             >
-                <div className="absolute left-1 inline-block">{barData_Memo.barType}</div>
-                <div className="absolute right-1 inline-block">({barData_Memo.barWeight} kg)</div>
+                <span className="float-left">{barData_Memo.barType}</span>
+                <span className="float-right font-mono">{barData_Memo.barWeight}</span>
             </div>
 
-            {/* Nearest */}
+            {/* Closest */}
             <div
                 className={classNames(
-                    "text-center text-[--grid-text]",
-                    safeTargetWeight !== nearestResult_Memo.total ? "bg-red-300" : "bg-[--grid-bg]",
+                    "bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono [&:nth-child(8n+2)]:bg-[--grid-element-bg-2]",
+                    safeTargetWeight !== closestResult_Memo.total ? "text-red-600" : "text-[--grid-element-text-color]",
                 )}
-                style={{ gridArea: `grid-element-nearest-${row}` }}
+                style={{
+                    gridRow: `plate-grid-row-first ${gridRow}`,
+                }}
             >
-                {nearestResult_Memo.total} kg
+                {closestResult_Memo.total}
             </div>
 
             {/* Add Plates / side */}
-            <ReturnSorted plates={weightsPerSide_Memo.plates} row={row} />
+            <ReturnSorted plates={weightsPerSide_Memo.plates} gridRow={gridRow} />
 
             {/* Add kg / side */}
-            <div className="bg-[--grid-bg] text-center text-[--grid-text]" style={{ gridArea: `grid-element-kg-per-side-${row}` }}>
-                {nearestResult_Memo.side}
-                {safeTargetWeight !== nearestResult_Memo.total && targetWeightPerSide_Memo > 0 && (
-                    <span className="text-red-300"> ({targetWeightPerSide_Memo})</span>
-                )}{" "}
-                kg{" "}
+            <div
+                className="bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] [&:nth-child(8n+4)]:bg-[--grid-element-bg-2]"
+                style={{
+                    gridRow: `plate-grid-row-second ${gridRow}`,
+                }}
+            >
+                {closestResult_Memo.side}
+                {/* {safeTargetWeight !== closestResult_Memo.total && targetWeightPerSide_Memo > 0 && (
+                    <span className="font-mono text-red-300 line-through"> ({targetWeightPerSide_Memo})</span>
+                )} */}
             </div>
         </>
     );
@@ -99,30 +107,35 @@ const WeightBar = ({
 
 export default WeightBar;
 
-const ReturnSorted = ({ plates, row }: { plates: PlateCountType; row: number }) => {
+const ReturnSorted = ({ plates, gridRow }: { plates: PlateCountType; gridRow: number }) => {
     return (
-        <div className="grid size-full grid-cols-7" style={{ gridArea: `grid-element-plates-per-side-${row}` }}>
-            <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"15"}>
-                {plates["15"] ? <span className="font-bold text-green-600">{plates["15"]}</span> : <span className="text-gray-400">0</span>}
+        <div
+            className="grid grid-cols-7 bg-[--grid-element-bg-1] [&:nth-child(8n+3)]:bg-[--grid-element-bg-2]"
+            style={{
+                gridRow: `plate-grid-row-second ${gridRow}`,
+            }}
+        >
+            <div className=" bg-gray-200/70 text-center font-mono" key={"15"}>
+                {plates["15"] ? <span className="font-bold text-green-600">{plates["15"]}</span> : <span className="text-white ">0</span>}
             </div>
 
-            <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"10"}>
-                {plates["10"] ? <span className="font-bold text-green-600">{plates["10"]}</span> : <span className="text-white">0</span>}
+            <div className="text-center font-mono" key={"10"}>
+                {plates["10"] ? <span className="font-bold text-green-600">{plates["10"]}</span> : <span className="text-white ">0</span>}
             </div>
 
-            <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"5"}>
-                {plates["5"] ? <span className="font-bold text-green-600">{plates["5"]}</span> : <span className="text-gray-400">0</span>}
+            <div className=" bg-gray-200/70 text-center font-mono" key={"5"}>
+                {plates["5"] ? <span className="font-bold text-green-600">{plates["5"]}</span> : <span className="text-white ">0</span>}
             </div>
 
-            <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"2.5"}>
-                {plates["2.5"] ? <span className="font-bold text-green-600">{plates["2.5"]}</span> : <span className="text-white">0</span>}
+            <div className="text-center font-mono" key={"2.5"}>
+                {plates["2.5"] ? <span className="font-bold text-green-600">{plates["2.5"]}</span> : <span className="text-white ">0</span>}
             </div>
 
-            <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"2"}>
-                {plates["2"] ? <span className="font-bold text-green-600">{plates["2"]}</span> : <span className="text-gray-400">0</span>}
+            <div className=" bg-gray-200/70 text-center font-mono" key={"2"}>
+                {plates["2"] ? <span className="font-bold text-green-600">{plates["2"]}</span> : <span className="text-white ">0</span>}
             </div>
 
-            <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"1.25"}>
+            <div className="text-center font-mono" key={"1.25"}>
                 {plates["1.25"] ? (
                     <span className="font-bold text-green-600">{plates["1.25"]}</span>
                 ) : (
@@ -130,12 +143,8 @@ const ReturnSorted = ({ plates, row }: { plates: PlateCountType; row: number }) 
                 )}
             </div>
 
-            <div className="flex size-full items-center justify-center text-center odd:bg-gray-100 even:bg-gray-200" key={"0.5"}>
-                {plates["0.5"] ? (
-                    <span className="font-bold text-green-600">{plates["0.5"]}</span>
-                ) : (
-                    <span className="text-gray-400">0</span>
-                )}
+            <div className=" bg-gray-200/70 text-center font-mono" key={"0.5"}>
+                {plates["0.5"] ? <span className="font-bold text-green-600">{plates["0.5"]}</span> : <span className="text-white">0</span>}
             </div>
         </div>
     );

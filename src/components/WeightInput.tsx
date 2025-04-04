@@ -14,9 +14,9 @@ const WeightInput = ({
     }, [weightTempVal]);
 
     return (
-        <div className="my-2 self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg outline outline-2 outline-offset-2 outline-green-500/50 sm:order-2 sm:my-0 sm:basis-1/3">
+        <div className="my-2 self-stretch rounded-md bg-[--grid-bg] p-[--grid-padding] shadow-lg outline outline-2 outline-offset-2 outline-green-500/50 sm:order-2 sm:my-0 sm:basis-1/3">
             <label
-                className="block rounded-t-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic shadow-sm"
+                className="block rounded-t-md bg-[--grid-header-bg] p-[--grid-header-padding] text-center font-semibold text-[--grid-header-text-color]"
                 htmlFor="weightValue"
             >
                 Total Target Weight
@@ -30,7 +30,7 @@ const WeightInput = ({
                 }}
             >
                 <input
-                    className="w-1/2 rounded-md border border-green-600 py-1 text-center font-semibold focus:border-green-400 sm:w-[calc(100%-2px)]"
+                    className="w-1/2 rounded-md border border-green-600 py-1 text-center font-mono font-semibold focus:border-green-400 sm:w-[calc(100%-2px)]"
                     type="number"
                     step={0.5}
                     min={0}

@@ -22,16 +22,26 @@ const WarmupWeights = ({
     }, [targetWeight]);
 
     return (
-        <div className="grid grid-cols-2 gap-px self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg sm:order-1 sm:basis-[30%]">
-            <div className="col-span-2 rounded-t-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic shadow-sm">
+        <div className="self-stretch rounded-md bg-[--grid-bg] p-[--grid-padding] shadow-lg sm:order-1 sm:basis-[30%]">
+            <div className="mb-[--grid-gap-y] rounded-t-md bg-[--grid-header-bg] p-[--grid-header-padding] text-center font-semibold text-[--grid-header-text-color]">
                 Warmup Weights
             </div>
-            <div className="bg-gray-200 text-center font-semibold">Percentage</div>
-            <div className="bg-gray-200 text-center font-semibold">Weight</div>
-            <div className="bg-[--grid-bg] text-center text-[--grid-text] sm:leading-snug">75%</div>
-            <div className="bg-[--grid-bg] text-center text-[--grid-text] sm:leading-snug">{roundedNumbersMemo.threeQuarters} kg</div>
-            <div className="rounded-bl-md bg-[--grid-bg] text-center text-[--grid-text] sm:leading-snug">50%</div>
-            <div className="rounded-br-md bg-[--grid-bg] text-center text-[--grid-text] sm:leading-snug">{roundedNumbersMemo.half} kg</div>
+            <div className="grid grid-cols-2 gap-x-[--grid-gap-x] gap-y-[--grid-gap-y]">
+                <div className="bg-gray-200 px-[--grid-element-padding-x] text-right font-semibold">Percent %</div>
+                <div className="bg-gray-200 px-[--grid-element-padding-x] text-right font-semibold">Weight (kg)</div>
+                <div className="bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] sm:leading-snug">
+                    75
+                </div>
+                <div className="bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] sm:leading-snug">
+                    {roundedNumbersMemo.threeQuarters}
+                </div>
+                <div className="rounded-bl-md bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] sm:leading-snug">
+                    50
+                </div>
+                <div className="rounded-br-md bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] sm:leading-snug">
+                    {roundedNumbersMemo.half}
+                </div>
+            </div>
         </div>
     );
 };

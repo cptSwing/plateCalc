@@ -3,9 +3,16 @@ import WeightInput from "../components/WeightInput";
 import AvailablePlates from "../components/AvailablePlates";
 import WeightGrid from "../components/WeightGrid";
 import WarmupWeights from "../components/WarmupWeights";
+import StrokeText from "../components/StrokeText";
 
-const variableCssClassNames =
-    "[--element-bg:theme(colors.gray.300)] [--element-padding:theme(spacing.px)] [--grid-bg:theme(colors.gray.400)] [--grid-text:theme(colors.gray.100)] [--header-bg:theme(colors.gray.50)] [--header-padding:theme(spacing.1)]";
+const gridClassNames =
+    "[--grid-bg:theme(colors.gray.200)] [--grid-gap-x:0] [--grid-gap-y:theme(spacing[0.5])] [--grid-padding:theme(spacing.1)] ";
+const gridHeaderClassNames =
+    "[--grid-header-bg:theme(colors.gray.500)] [--grid-header-text-color:theme(colors.gray.100)] [--grid-header-padding:theme(spacing.1)] ";
+const gridElementClassNames =
+    "sm:[--grid-element-padding-x:theme(spacing.4)] [--grid-element-padding-x:theme(spacing.2)] [--grid-element-bg-1:theme(colors.gray.400)] [--grid-element-bg-2:theme(colors.gray.300)] [--grid-element-text-color:theme(colors.gray.100)]";
+
+const variableCssClassNames = gridClassNames + gridHeaderClassNames + gridElementClassNames;
 
 const App = () => {
     const targetWeightState = useState<number | null>(null);
@@ -29,5 +36,12 @@ const App = () => {
 export default App;
 
 const Logo = () => {
-    return <div className="z-10 -mb-5 ml-1 text-4xl font-bold italic leading-none text-[--element-bg] drop-shadow-sm">plateCalc</div>;
+    return (
+        <StrokeText
+            text="plateCalc"
+            classNames="z-10 -mb-2 ml-1 text-4xl font-bold italic leading-none text-[--grid-bg] drop-shadow-sm"
+            strokeWidth="0.2rem"
+            strokeColor="#303846"
+        />
+    );
 };

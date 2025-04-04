@@ -16,7 +16,7 @@ const WeightGrid = ({ targetWeightState }: { targetWeightState: [number | null, 
     const [barsValue] = useLocalStorage("tools", defaultBars);
 
     return (
-        <div className="sm:grid-template-desktop grid-template-mobile grid gap-px rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg">
+        <div className="plate-grid-template grid gap-x-[--grid-gap-x] gap-y-[--grid-gap-y] rounded-md bg-[--grid-bg] p-[--grid-padding] shadow-lg">
             {/* Grid labels */}
             <GridLabels />
 
@@ -24,7 +24,7 @@ const WeightGrid = ({ targetWeightState }: { targetWeightState: [number | null, 
             {Object.entries(barsValue).map((barData, idx) => (
                 <WeightBar
                     key={`${barData[0]}_${idx}`}
-                    row={idx + 1}
+                    gridRow={idx + 1}
                     targetWeightState={targetWeightState}
                     barData={barData as [keyof BarsType, number]}
                 />
@@ -45,8 +45,8 @@ export default WeightGrid;
 const GridLabels = () => {
     return (
         <>
-            <div className="grid-header-bar rounded-tl-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
-                Bar
+            <div className="grid-header-bar rounded-tl-md bg-[--grid-header-bg] px-[--grid-element-padding-x] font-semibold leading-loose text-[--grid-header-text-color]">
+                Bar (kg)
                 <EditLocalStorage
                     storageKey="tools"
                     defaultValue={defaultBars}
@@ -58,16 +58,16 @@ const GridLabels = () => {
                 />
             </div>
 
-            <div className="grid-header-nearest rounded-tr-md bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:rounded-none sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
-                Nearest Result
+            <div className="grid-header-closest rounded-tr-md bg-[--grid-header-bg] px-[--grid-element-padding-x] text-right font-semibold leading-loose text-[--grid-header-text-color] sm:rounded-none ">
+                Closest (kg)
             </div>
 
-            <div className="grid-header-plate-per-side bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
+            <div className="grid-header-plate-per-side bg-[--grid-header-bg] pr-[--grid-element-padding-x] font-semibold leading-loose text-[--grid-header-text-color]">
                 Plates / Side
             </div>
 
-            <div className="grid-header-kg-per-side bg-[--header-bg] p-[--header-padding] pt-[calc(var(--header-padding)+0.333rem)] text-center font-semibold italic leading-loose shadow-sm sm:rounded-tr-md sm:pt-[calc(var(--header-padding)+0.25rem)] md:pt-[calc(var(--header-padding))] ">
-                Added Kg / Side
+            <div className="grid-header-kg-per-side bg-[--grid-header-bg] px-[--grid-element-padding-x] text-right font-semibold leading-loose text-[--grid-header-text-color] sm:rounded-tr-md ">
+                +Kg / Side
             </div>
         </>
     );

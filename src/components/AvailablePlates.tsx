@@ -6,9 +6,9 @@ const AvailablePlates = () => {
     const plates = usePlates();
 
     return (
-        <div className="flex flex-col items-center justify-start self-stretch rounded-md bg-[--element-bg] p-[--element-padding] shadow-lg sm:order-3 sm:basis-[30%]">
-            <div className="w-full rounded-t-md bg-[--header-bg] p-[--header-padding] text-center font-semibold italic shadow-sm">
-                Edit Plate-Set
+        <div className="flex flex-col items-center justify-start self-stretch rounded-md bg-[--grid-bg] p-[--grid-padding] shadow-lg sm:order-3 sm:basis-[30%]">
+            <div className="w-full rounded-t-md bg-[--grid-header-bg] p-[--grid-header-padding] text-center font-semibold text-[--grid-header-text-color]">
+                Available Plates
                 <EditLocalStorage
                     storageKey="plates"
                     defaultValue={defaultPlates}
