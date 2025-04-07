@@ -32,7 +32,7 @@ const WeightGrid = ({ targetWeightState }: { targetWeightState: [number | null, 
 
             {/* Plates Symbols below */}
             <div className="grid-footer-plates">
-                <div className="grid w-full grid-cols-7 gap-0.5 py-1 text-xs sm:gap-0.5 md:gap-1 md:text-sm lg:text-lg">
+                <div className="grid w-full grid-cols-7 gap-3 px-[--grid-element-padding-x] py-1 text-xs sm:gap-1 sm:px-0 md:gap-1.5 md:text-sm lg:text-base">
                     <PlateDisplay />
                 </div>
             </div>
@@ -45,7 +45,7 @@ export default WeightGrid;
 const GridLabels = () => {
     return (
         <>
-            <div className="grid-header-bar rounded-tl-md bg-[--grid-header-bg] p-[--grid-header-padding] font-semibold leading-loose text-[--grid-header-text-color]">
+            <div className="grid-header-bar rounded-tl-md bg-[--grid-header-bg] p-[--grid-header-padding] px-[--grid-element-padding-x] font-semibold leading-loose text-[--grid-header-text-color]">
                 Bar (kg)
                 <EditLocalStorage
                     storageKey="tools"
@@ -58,16 +58,16 @@ const GridLabels = () => {
                 />
             </div>
 
-            <div className="grid-header-closest rounded-tr-md bg-[--grid-header-bg] p-[--grid-header-padding] text-right font-semibold leading-loose text-[--grid-header-text-color] sm:rounded-none ">
+            <div className="grid-header-kg-per-side bg-[--grid-header-bg] p-[--grid-header-padding] px-[--grid-element-padding-x] text-right font-semibold leading-loose text-[--grid-header-text-color]">
+                +Kg / Side
+            </div>
+
+            <div className="grid-header-closest rounded-tr-md bg-[--grid-header-bg] p-[--grid-header-padding] px-[--grid-element-padding-x] text-right font-semibold leading-loose text-[--grid-header-text-color] sm:rounded-none ">
                 Closest (kg)
             </div>
 
-            <div className="grid-header-plate-per-side bg-[--grid-header-bg] p-[--grid-header-padding] font-semibold leading-loose text-[--grid-header-text-color]">
+            <div className="grid-header-plate-per-side bg-[--grid-header-bg] p-[--grid-header-padding] px-[--grid-element-padding-x] font-semibold leading-loose text-[--grid-header-text-color] sm:rounded-tr-md">
                 Plates / Side
-            </div>
-
-            <div className="grid-header-kg-per-side bg-[--grid-header-bg] p-[--grid-header-padding] text-right font-semibold leading-loose text-[--grid-header-text-color] sm:rounded-tr-md ">
-                +Kg / Side
             </div>
         </>
     );

@@ -59,7 +59,7 @@ const WeightBar = ({
         <>
             {/* Tool */}
             <div
-                className="type relative bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-[--grid-element-text-color] [&:nth-child(8n+1)]:bg-[--grid-element-bg-2]"
+                className="bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-[--grid-element-text-color] [&:nth-child(8n+1)]:bg-[--grid-element-bg-2]"
                 style={{
                     gridRow: `plate-grid-row-first ${gridRow}`,
                 }}
@@ -68,10 +68,20 @@ const WeightBar = ({
                 <span className="float-right font-mono">{barData_Memo.barWeight}</span>
             </div>
 
+            {/* Add kg / side */}
+            <div
+                className="bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] [&:nth-child(8n+2)]:bg-[--grid-element-bg-2]"
+                style={{
+                    gridRow: `plate-grid-row-first ${gridRow}`,
+                }}
+            >
+                {closestResult_Memo.side}
+            </div>
+
             {/* Closest */}
             <div
                 className={classNames(
-                    "bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono [&:nth-child(8n+2)]:bg-[--grid-element-bg-2]",
+                    "bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono [&:nth-child(8n+3)]:bg-[--grid-element-bg-2]",
                     safeTargetWeight !== closestResult_Memo.total ? "text-red-600" : "text-[--grid-element-text-color]",
                 )}
                 style={{
@@ -83,16 +93,6 @@ const WeightBar = ({
 
             {/* Add Plates / side */}
             <ReturnSorted plates={weightsPerSide_Memo.plates} gridRow={gridRow} />
-
-            {/* Add kg / side */}
-            <div
-                className="bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] [&:nth-child(8n+4)]:bg-[--grid-element-bg-2]"
-                style={{
-                    gridRow: `plate-grid-row-second ${gridRow}`,
-                }}
-            >
-                {closestResult_Memo.side}
-            </div>
         </>
     );
 };
@@ -102,7 +102,7 @@ export default WeightBar;
 const ReturnSorted = ({ plates, gridRow }: { plates: PlateCountType; gridRow: number }) => {
     return (
         <div
-            className="grid grid-cols-7 bg-[--grid-element-bg-1] [&:nth-child(8n+3)]:bg-[--grid-element-bg-2]"
+            className="col-span-3 grid grid-cols-7 bg-[--grid-element-bg-1] sm:col-span-1 [&:nth-child(8n+4)]:bg-[--grid-element-bg-2]"
             style={{
                 gridRow: `plate-grid-row-second ${gridRow}`,
             }}

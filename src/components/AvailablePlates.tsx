@@ -20,7 +20,7 @@ const AvailablePlates = () => {
                 />
             </div>
 
-            <div className="grid w-full grid-cols-7 gap-x-6 p-1 text-base sm:gap-x-1 sm:gap-y-2 sm:py-4 sm:text-2xs md:text-xs lg:text-sm">
+            <div className="grid w-full grid-cols-7 gap-x-2 p-1 text-base sm:gap-x-px sm:gap-y-2 sm:py-4 sm:text-2xs md:gap-x-1 md:text-xs lg:text-sm">
                 <PlateDisplay />
 
                 {plates.map(([plateType, count], idx) => (

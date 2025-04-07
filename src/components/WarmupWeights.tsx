@@ -27,18 +27,18 @@ const WarmupWeights = ({
                 Warmup Weights
             </div>
             <div className="grid grid-cols-2 gap-x-[--grid-gap-x] gap-y-[--grid-gap-y]">
-                <div className="bg-gray-200 px-[--grid-element-padding-x] text-right font-semibold">Percent %</div>
-                <div className="bg-gray-200 px-[--grid-element-padding-x] text-right font-semibold">Weight (kg)</div>
-                <div className="bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] sm:leading-snug">
+                <div className="bg-[--grid-element-bg-2] px-[--grid-element-padding-x] text-right font-semibold">Percent %</div>
+                <div className="bg-[--grid-element-bg-2] px-[--grid-element-padding-x] text-right font-semibold">Weight (kg)</div>
+                <div className="bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color]">
                     75
                 </div>
-                <div className="bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] sm:leading-snug">
+                <div className="bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color]">
                     {roundedNumbersMemo.threeQuarters}
                 </div>
-                <div className="rounded-bl-md bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] sm:leading-snug">
+                <div className="rounded-bl-md bg-[--grid-element-bg-2] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color]">
                     50
                 </div>
-                <div className="rounded-br-md bg-[--grid-element-bg-1] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color] sm:leading-snug">
+                <div className="rounded-br-md bg-[--grid-element-bg-2] px-[--grid-element-padding-x] text-right font-mono text-[--grid-element-text-color]">
                     {roundedNumbersMemo.half}
                 </div>
             </div>
