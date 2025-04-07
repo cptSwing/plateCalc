@@ -38,11 +38,6 @@ const WeightBar = ({
         return countWeightPlates(targetWeightCorrected, setLimits);
     }, [safeTargetWeight, barData_Memo]);
 
-    const targetWeightPerSide_Memo = useMemo(() => {
-        const { barWeight, multipleBars } = barData_Memo;
-        return multipleBars ? (safeTargetWeight - barWeight * 2) / 2 / 2 : (safeTargetWeight - barWeight) / 2;
-    }, [safeTargetWeight, barData_Memo]);
-
     const closestResult_Memo = useMemo(() => {
         const closestPerSide = weightsPerSide_Memo.achievedWeight;
         const toolWeight = barData_Memo.barWeight;
@@ -97,9 +92,6 @@ const WeightBar = ({
                 }}
             >
                 {closestResult_Memo.side}
-                {/* {safeTargetWeight !== closestResult_Memo.total && targetWeightPerSide_Memo > 0 && (
-                    <span className="font-mono text-red-300 line-through"> ({targetWeightPerSide_Memo})</span>
-                )} */}
             </div>
         </>
     );
@@ -115,36 +107,60 @@ const ReturnSorted = ({ plates, gridRow }: { plates: PlateCountType; gridRow: nu
                 gridRow: `plate-grid-row-second ${gridRow}`,
             }}
         >
-            <div className=" bg-gray-200/70 text-center font-mono" key={"15"}>
-                {plates["15"] ? <span className="font-bold text-green-600">{plates["15"]}</span> : <span className="text-white ">0</span>}
+            <div className="text-center font-mono" key={"15"}>
+                {plates["15"] ? (
+                    <span className="font-bold text-green-600">{plates["15"]}</span>
+                ) : (
+                    <span className="text-[--grid-element-text-color]">0</span>
+                )}
             </div>
 
             <div className="text-center font-mono" key={"10"}>
-                {plates["10"] ? <span className="font-bold text-green-600">{plates["10"]}</span> : <span className="text-white ">0</span>}
+                {plates["10"] ? (
+                    <span className="font-bold text-green-600">{plates["10"]}</span>
+                ) : (
+                    <span className="text-[--grid-element-text-color]">0</span>
+                )}
             </div>
 
-            <div className=" bg-gray-200/70 text-center font-mono" key={"5"}>
-                {plates["5"] ? <span className="font-bold text-green-600">{plates["5"]}</span> : <span className="text-white ">0</span>}
+            <div className="text-center font-mono" key={"5"}>
+                {plates["5"] ? (
+                    <span className="font-bold text-green-600">{plates["5"]}</span>
+                ) : (
+                    <span className="text-[--grid-element-text-color]">0</span>
+                )}
             </div>
 
             <div className="text-center font-mono" key={"2.5"}>
-                {plates["2.5"] ? <span className="font-bold text-green-600">{plates["2.5"]}</span> : <span className="text-white ">0</span>}
+                {plates["2.5"] ? (
+                    <span className="font-bold text-green-600">{plates["2.5"]}</span>
+                ) : (
+                    <span className="text-[--grid-element-text-color]">0</span>
+                )}
             </div>
 
-            <div className=" bg-gray-200/70 text-center font-mono" key={"2"}>
-                {plates["2"] ? <span className="font-bold text-green-600">{plates["2"]}</span> : <span className="text-white ">0</span>}
+            <div className="text-center font-mono" key={"2"}>
+                {plates["2"] ? (
+                    <span className="font-bold text-green-600">{plates["2"]}</span>
+                ) : (
+                    <span className="text-[--grid-element-text-color]">0</span>
+                )}
             </div>
 
             <div className="text-center font-mono" key={"1.25"}>
                 {plates["1.25"] ? (
                     <span className="font-bold text-green-600">{plates["1.25"]}</span>
                 ) : (
-                    <span className="text-white">0</span>
+                    <span className="text-[--grid-element-text-color]">0</span>
                 )}
             </div>
 
-            <div className=" bg-gray-200/70 text-center font-mono" key={"0.5"}>
-                {plates["0.5"] ? <span className="font-bold text-green-600">{plates["0.5"]}</span> : <span className="text-white">0</span>}
+            <div className="text-center font-mono" key={"0.5"}>
+                {plates["0.5"] ? (
+                    <span className="font-bold text-green-600">{plates["0.5"]}</span>
+                ) : (
+                    <span className="text-[--grid-element-text-color]">0</span>
+                )}
             </div>
         </div>
     );

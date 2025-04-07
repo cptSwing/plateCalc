@@ -12,7 +12,7 @@ const AvailablePlates = () => {
                 <EditLocalStorage
                     storageKey="plates"
                     defaultValue={defaultPlates}
-                    classN=""
+                    classN="float-right h-6"
                     stepVal={2}
                     minVal={2}
                     description="Kg-Plate"
@@ -24,9 +24,9 @@ const AvailablePlates = () => {
                 <PlateDisplay />
 
                 {plates.map(([plateType, count], idx) => (
-                    <div key={`${plateType}_${count}` + idx} className="flex items-center justify-center text-sm">
+                    <span key={`${plateType}_${count}` + idx} className="text-center text-sm font-semibold">
                         {count}
-                    </div>
+                    </span>
                 ))}
             </div>
         </div>

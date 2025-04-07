@@ -26,7 +26,7 @@ const EditLocalStorage = ({
     return (
         <>
             <PencilSquareIcon
-                className={`${classN} float-right aspect-square h-6 cursor-pointer pt-px text-gray-700/60 hover:text-gray-400 active:text-gray-300`}
+                className={`${classN} inline-block aspect-square cursor-pointer text-gray-700/60 hover:text-gray-400 active:text-gray-300`}
                 onClick={(ev) => setModalIsOpen(true)}
             />
 

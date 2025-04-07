@@ -6,11 +6,11 @@ import WarmupWeights from "../components/WarmupWeights";
 import StrokeText from "../components/StrokeText";
 
 const gridClassNames =
-    "[--grid-bg:theme(colors.gray.200)] [--grid-gap-x:0] [--grid-gap-y:theme(spacing[0.5])] [--grid-padding:theme(spacing.1)] ";
+    "[--grid-bg:theme(colors.slate.100)] [--grid-gap-x:0] [--grid-gap-y:theme(spacing[0.5])] [--grid-padding:theme(spacing.1)] ";
 const gridHeaderClassNames =
-    "[--grid-header-bg:theme(colors.gray.500)] [--grid-header-text-color:theme(colors.gray.100)] [--grid-header-padding:theme(spacing.1)] ";
+    "[--grid-header-bg:theme(colors.slate.500)] [--grid-header-text-color:theme(colors.slate.50)] [--grid-header-padding:theme(spacing.1)] ";
 const gridElementClassNames =
-    "sm:[--grid-element-padding-x:theme(spacing.4)] [--grid-element-padding-x:theme(spacing.2)] [--grid-element-bg-1:theme(colors.gray.400)] [--grid-element-bg-2:theme(colors.gray.300)] [--grid-element-text-color:theme(colors.gray.100)]";
+    "sm:[--grid-element-padding-x:theme(spacing.4)] [--grid-element-padding-x:theme(spacing.2)] [--grid-element-bg-1:theme(colors.slate.100)] [--grid-element-bg-2:theme(colors.slate.200)] [--grid-element-text-color:theme(colors.slate.700)]";
 
 const variableCssClassNames = gridClassNames + gridHeaderClassNames + gridElementClassNames;
 

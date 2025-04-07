@@ -16,7 +16,7 @@ const WeightGrid = ({ targetWeightState }: { targetWeightState: [number | null, 
     const [barsValue] = useLocalStorage("tools", defaultBars);
 
     return (
-        <div className="plate-grid-template grid gap-x-[--grid-gap-x] gap-y-[--grid-gap-y] rounded-md bg-[--grid-bg] p-[--grid-padding] shadow-lg">
+        <div className="plate-grid-template grid rounded-md bg-[--grid-bg] p-[--grid-padding] shadow-lg">
             {/* Grid labels */}
             <GridLabels />
 
@@ -45,12 +45,12 @@ export default WeightGrid;
 const GridLabels = () => {
     return (
         <>
-            <div className="grid-header-bar rounded-tl-md bg-[--grid-header-bg] px-[--grid-element-padding-x] font-semibold leading-loose text-[--grid-header-text-color]">
+            <div className="grid-header-bar rounded-tl-md bg-[--grid-header-bg] p-[--grid-header-padding] font-semibold leading-loose text-[--grid-header-text-color]">
                 Bar (kg)
                 <EditLocalStorage
                     storageKey="tools"
                     defaultValue={defaultBars}
-                    classN="float-right aspect-square h-6 pt-px text-gray-700/60"
+                    classN="h-6 pl-1 pb-1"
                     stepVal={0.5}
                     minVal={1}
                     description="Tool"
@@ -58,15 +58,15 @@ const GridLabels = () => {
                 />
             </div>
 
-            <div className="grid-header-closest rounded-tr-md bg-[--grid-header-bg] px-[--grid-element-padding-x] text-right font-semibold leading-loose text-[--grid-header-text-color] sm:rounded-none ">
+            <div className="grid-header-closest rounded-tr-md bg-[--grid-header-bg] p-[--grid-header-padding] text-right font-semibold leading-loose text-[--grid-header-text-color] sm:rounded-none ">
                 Closest (kg)
             </div>
 
-            <div className="grid-header-plate-per-side bg-[--grid-header-bg] pr-[--grid-element-padding-x] font-semibold leading-loose text-[--grid-header-text-color]">
+            <div className="grid-header-plate-per-side bg-[--grid-header-bg] p-[--grid-header-padding] font-semibold leading-loose text-[--grid-header-text-color]">
                 Plates / Side
             </div>
 
-            <div className="grid-header-kg-per-side bg-[--grid-header-bg] px-[--grid-element-padding-x] text-right font-semibold leading-loose text-[--grid-header-text-color] sm:rounded-tr-md ">
+            <div className="grid-header-kg-per-side bg-[--grid-header-bg] p-[--grid-header-padding] text-right font-semibold leading-loose text-[--grid-header-text-color] sm:rounded-tr-md ">
                 +Kg / Side
             </div>
         </>
