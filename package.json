@@ -1,29 +1,33 @@
 {
+    "name": "plate-calculator",
+    "private": false,
+    "license": "MIT",
+    "version": "0.0.3",
     "scripts": {
         "dev": "parcel ./src/index.html",
         "build": "parcel build ./src/index.html --public-url https://www.jbrandenburg.de/bundles/platecalc"
     },
     "devDependencies": {
         "@heroicons/react": "^2.2.0",
-        "@parcel/packager-raw-url": "^2.10.3",
-        "@parcel/packager-xml": "2.14.4",
-        "@parcel/transformer-webmanifest": "^2.10.3",
+        "@parcel/packager-raw-url": "^2.16.1",
+        "@parcel/packager-xml": "^2.16.1",
+        "@parcel/service-worker": "^2.16.1",
+        "@parcel/transformer-webmanifest": "^2.16.1",
         "@types/prettier": "^3.0.0",
         "@types/react": "^18.2.79",
-        "@types/serviceworker": "^0.0.127",
-        "eslint": "^9.0.0",
-        "eslint-config-prettier": "^8.5.0",
-        "parcel": "^2.10.3",
+        "@types/serviceworker": "^0.0.167",
+        "eslint": "^9.39.1",
+        "eslint-config-prettier": "^10.1.8",
+        "parcel": "^2.16.1",
         "parcel-config-pwa-manifest": "^0.1.6",
-        "postcss": "^8.4.32",
-        "prettier": "^3.1.0",
-        "prettier-plugin-tailwindcss": "^0.5.3",
+        "postcss": "^8.5.6",
+        "prettier": "^3.7.1",
+        "prettier-plugin-tailwindcss": "^0.7.1",
         "process": "^0.11.10",
         "tailwindcss": "^3.3.5",
-        "typescript": "^5.4.5"
+        "typescript": "^5.9.3"
     },
     "dependencies": {
-        "@parcel/service-worker": "^2.10.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     }

@@ -3,6 +3,7 @@
     "short_name": "plateCalc",
     "description": "How many plates for a BIG pump?",
     "scope": "/bundles/platecalc/",
+    "id": "/bundles/platecalc/index.html",
     "start_url": "/bundles/platecalc/index.html",
     "display": "standalone",
     "orientation": "natural",
